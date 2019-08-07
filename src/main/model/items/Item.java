@@ -1,30 +1,20 @@
 package model.items;
 
-import model.orders.CustomerOrder;
+import model.orders.Customer;
+import model.orders.Sales;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Item {
+    protected int itemsSold;
+    protected double sales;
+    protected Sales sales1;
 
-    private Set<CustomerOrder> customerOrders;
-
-//    protected HashMap<items, Set<items>> itemLookUp = new HashMap<>();
-//
-//    public void addExqFigure(Exq exq) {
-//        itemLookUp.put(exq, new HashSet<>());
-//    }
-//
-//    public void addBook(Book book) {
-//        itemLookUp.put(book, new HashSet<>());
-//    }
-//
-//    public void addExqFigure(String figureType, Exq exq) {
-//        Set<items> figures = itemLookUp.get(figureType);
-//        figures.add(exq);
-//
-//    }
+    public Item() {
+        sales1 = new Sales();
+    }
 
     public static final ArrayList<Item> ITEM_LIST = new ArrayList<Item>() {
         {
@@ -38,10 +28,10 @@ public abstract class Item {
     public abstract int putItemOnHold();
 
 
-    public void addCustomerOrder(CustomerOrder co) {
-        customerOrders = new HashSet<>();
-        if (!customerOrders.contains(co)) {
-            customerOrders.add(co);
+    public void addCustomerOrder(Customer co) {
+        Set<Customer> customers = new HashSet<>();
+        if (!customers.contains(co)) {
+            customers.add(co);
             co.addItems(this);
         }
     }

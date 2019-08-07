@@ -1,16 +1,12 @@
 package model.inventory;
 
 import model.items.Item;
-import model.items.Book;
-import model.items.Figure;
 
 import java.util.ArrayList;
 
 public abstract class InventoryList {
 
     private ArrayList<Item> itemData = new ArrayList<>();
-    private ArrayList<Book> booksData = new ArrayList<>();
-    private ArrayList<Figure> figuresData = new ArrayList<>();
 
 
     // MODIFIES: this

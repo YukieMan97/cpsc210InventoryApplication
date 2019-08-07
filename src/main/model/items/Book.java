@@ -10,13 +10,9 @@ public abstract class Book extends Item implements GeneralInformation {
     protected int year;
     protected int quantity;
     protected double priceTag;
-    protected static ArrayList<ArtBook> artBookArrayList;
-    protected static ArrayList<Manga> mangaArrayList;
 
     public static final ArrayList<Book> BOOK_LIST = new ArrayList<Book>() {
         {
-//            BOOK_LIST.addAll(artBookArrayList);
-//            BOOK_LIST.addAll(mangaArrayList);
             add(ArtBook.NIER);
             add(ArtBook.BATTLE_ANGEL);
             add(ArtBook.DARK_SOULS);
@@ -37,8 +33,6 @@ public abstract class Book extends Item implements GeneralInformation {
         this.year = year;
         this.quantity = quantity;
         this.priceTag = priceTag;
-        artBookArrayList = ArtBook.ARTBOOK_LIST;
-        mangaArrayList = Manga.MANGA_LIST;
 
     }
 
@@ -72,9 +66,26 @@ public abstract class Book extends Item implements GeneralInformation {
     }
 
     @Override
+    public double getPriceTag() {
+        return priceTag;
+    }
+
+    @Override
     public String getInformation() {
         return (getTitle() + " " + getVolumeOrChapter() + ", " + getAuthor() + ", "
                 + getYearPublished() + ", Quantity: " + quantity + ", $" + priceTag);
+    }
+
+    @Override
+    public int purchaseItem() {
+        itemsSold++;
+        this.sales = sales + priceTag;
+        return quantity--;
+    }
+
+    @Override
+    public int putItemOnHold() {
+        return quantity--;
     }
 
     @Override

@@ -23,21 +23,4 @@ public class Exq extends Figure {
         super(name, quantity, priceTag);
     }
 
-
-    @Override
-    public int purchaseItem() {
-        itemsSold++;
-        return quantity--;
-    }
-
-    @Override
-    public int putItemOnHold() {
-        itemsSold++;
-        return quantity--;
-    }
-
-    @Override
-    public double setPriceTag(double newPriceTag) {
-        return priceTag = newPriceTag;
-    }
 }

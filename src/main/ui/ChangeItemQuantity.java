@@ -99,11 +99,13 @@ public class ChangeItemQuantity {
         if (purchaseOrHold.equals("1") && (chooseCustomerOrStaff.equals("1"))) {
             String info = "customer purchase!";
             item.purchaseItem();
+            //Sales.increaseSales(item);
             printPurchaseOrHoldMessage(item, info);
             return;
         } if (purchaseOrHold.equals("1") && (chooseCustomerOrStaff.equals("2"))) {
             String info = "staff purchase!";
             item.purchaseItem();
+            //Sales.increaseSales(item);
             printPurchaseOrHoldMessage(item, info);
             return;
         } if (purchaseOrHold.equals("2") && (chooseCustomerOrStaff.equals("1"))) {

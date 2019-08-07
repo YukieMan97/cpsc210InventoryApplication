@@ -27,9 +27,6 @@ public class ArtBook extends Book {
     public ArtBook(String title, int volumeOrChapter, String author,
                     int  year, int quantity, double priceTag) {
         super(title, volumeOrChapter, author, year, quantity, priceTag);
-        this.quantity = quantity;
-        this.priceTag = priceTag;
-
     }
 
     @Override
@@ -46,19 +43,10 @@ public class ArtBook extends Book {
     }
 
     @Override
-    public int purchaseItem() {
-        return quantity--;
-    }
-
-    @Override
     public int putItemOnHold() {
         return quantity--;
     }
 
-    @Override
-    public double getPriceTag() {
-        return priceTag;
-    }
 
     @Override
     public double setPriceTag(double newPriceTag) {

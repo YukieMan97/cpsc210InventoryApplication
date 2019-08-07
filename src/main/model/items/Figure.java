@@ -1,7 +1,5 @@
 package model.items;
 
-import model.orders.ItemsSold;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,6 +10,7 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
     protected double priceTag;
     protected static ArrayList<Exq> exqArrayList;
     protected int itemsSold;
+    protected double sales;
 
     public static final ArrayList<Figure> FIGURE_LIST = new ArrayList<Figure>() {
         {
@@ -33,7 +32,6 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
         this.quantity = quantity;
         this.priceTag = priceTag;
         exqArrayList = Exq.EXQ_LIST;
-        ItemsSold itemsSold = new ItemsSold();
     }
 
     @Override
@@ -66,9 +64,22 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
         return getName().toLowerCase().contains(givenNameOrTitle.toLowerCase());
     }
 
-//    public void addFigureToAnimeOrGame(String animeOrGame, Exq exq) {
-//        stringSetHashMap.put(animeOrGame, new ArrayList<Figure>());
-//    }
+    public int purchaseItem() {
+        itemsSold++;
+        this.sales = sales + getPriceTag();
+        //Sales.notifyObservers();
+        return quantity--;
+    }
+
+    @Override
+    public int putItemOnHold() {
+        return quantity--;
+    }
+
+    @Override
+    public double setPriceTag(double newPriceTag) {
+        return priceTag = newPriceTag;
+    }
 
     @Override
     public boolean equals(Object o) {
