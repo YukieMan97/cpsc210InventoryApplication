@@ -1,6 +1,6 @@
 package ordersTests;
 
-import model.items.Item.Exq;
+import model.items.Exq;
 import model.items.Item;
 import model.items.Nendoroid;
 import model.orders.CustomerOrder;

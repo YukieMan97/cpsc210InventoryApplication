@@ -1,7 +1,8 @@
-package ui;
+package ui.exceptions;
 
 public class InvalidInputException extends SearchExceptions {
-    InvalidInputException() {
+
+    public InvalidInputException() {
         super();
     }
 }

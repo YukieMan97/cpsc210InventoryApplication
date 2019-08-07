@@ -1,11 +1,12 @@
 package model.saveload;
 
-import model.inventory.InventoryList;
-import java.io.FileReader;
-import java.io.IOException;
-
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import model.items.Exq;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 // this program reads a list of inventory items from inventoryList.json
@@ -20,15 +21,11 @@ public class JsonInventoryListReader {
         JsonReader reader = new JsonReader(new FileReader(FILENAME));
 
         // Read from the data into an InventoryList array (InventoryList[])
-        InventoryList figuresData = gson.fromJson(reader, InventoryList.class);
-//        InventoryList i = figuresData[0];
-//        System.out.println(i.namesAndQuantities());
-//        System.out.println(Arrays.toString(figuresData));
+        ArrayList<Exq> figuresData = gson.fromJson(reader, ArrayList.class);
 
         // Print out the inventory items  we found
-        System.out.println("Here are the inventory items I found:");
-//        for (InventoryList fd: figuresData) {
-        System.out.println(figuresData.namesAndQuantities());
+        System.out.println("Here are the EXQ figures found within the system:");
+        System.out.println(figuresData);
 //        }
     }
 }

@@ -1,3 +1,4 @@
+package model.items;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,7 +1,8 @@
-package ui;
+package ui.exceptions;
 
 public class InvalidChangeException extends SearchExceptions {
-    InvalidChangeException() {
+
+    public InvalidChangeException() {
         super();
     }
 }

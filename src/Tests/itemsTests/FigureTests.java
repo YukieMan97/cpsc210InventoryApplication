@@ -1,6 +1,6 @@
 package itemsTests;
 
-import model.items.Item.Exq;
+import model.items.Exq;
 import model.items.Nendoroid;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

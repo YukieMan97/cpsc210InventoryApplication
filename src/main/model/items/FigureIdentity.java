@@ -1,25 +1,23 @@
-package ui;
+package model.items;
 
 public class FigureIdentity {
 
-}
-
 //    public static void main(String[] args) {
-////        Map<Anime, Exq> animeFigureMap = new HashMap<>();
-////        animeFigureMap.put(new Anime("Sword Art Online Alicitization"), Exq.ALICE_SITTING);
-////        animeFigureMap.put(new Anime("Re:Zero"), Exq.REM_WEDDING);
-////        animeFigureMap.put(new Anime("Sword Art Online"), Exq.KIRITO_DUAL_WIELD);
-////        animeFigureMap.put(new Anime("Sword Art Online"), Exq.ASUNA_WEDDING);
-////
-////        Figure f1 = animeFigureMap.get("Re:Zero");
-////        if (f1 != null) {
-////            System.out.println(f1);
-////        }
-////
-////        Figure f2 = animeFigureMap.get("Re:Zero");
-////        if (f2 != null) {
-////            System.out.println(f2);
-////        }
+//        Map<Anime, Exq> animeFigureMap = new HashMap<>();
+//        animeFigureMap.put(new Anime("Sword Art Online Alicitization"), Exq.ALICE_SITTING);
+//        animeFigureMap.put(new Anime("Re:Zero"), Exq.REM_WEDDING);
+//        animeFigureMap.put(new Anime("Sword Art Online"), Exq.KIRITO_DUAL_WIELD);
+//        animeFigureMap.put(new Anime("Sword Art Online"), Exq.ASUNA_WEDDING);
+//
+//        Figure f1 = animeFigureMap.get("Re:Zero");
+//        if (f1 != null) {
+//            System.out.println(f1);
+//        }
+//
+//        Figure f2 = animeFigureMap.get("Re:Zero");
+//        if (f2 != null) {
+//            System.out.println(f2);
+//        }
 //
 //        Map<Exq, Anime> figureAnimeMap = new HashMap<>();
 //        figureAnimeMap.put(Exq.REM_WEDDING, new Anime("Re:Zero"));
@@ -42,7 +40,7 @@ public class FigureIdentity {
 //
 //}
 //
-//class Anime{
+//class Anime {
 //    private String s;
 //
 //    Anime(String s) {
@@ -62,4 +60,5 @@ public class FigureIdentity {
 //
 //        return Objects.hash(s);
 //    }
+}
 

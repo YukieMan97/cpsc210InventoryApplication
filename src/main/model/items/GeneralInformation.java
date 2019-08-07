@@ -5,6 +5,8 @@ interface GeneralInformation {
 
     double getPriceTag();
 
+    double setPriceTag(double newPriceTag);
+
     String getInformation();
 
     boolean containsNameOrTitle(String givenNameOrTitle);

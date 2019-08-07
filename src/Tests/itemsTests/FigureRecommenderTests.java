@@ -1,8 +1,8 @@
 package itemsTests;
 
-import model.items.Item.Exq;
-import model.items.Item.FigureRecommender;
+import model.items.Exq;
 import model.items.Nendoroid;
+import model.items.FigureRecommender;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,18 +1,39 @@
 package model.items;
 
+import model.orders.ItemsSold;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Figure extends Item implements NamedItems, GeneralInformation {
+public abstract class Figure extends Item implements NamedItem, GeneralInformation {
+//    public HashMap<String, List<Figure>> stringSetHashMap = new HashMap<>();
     protected  String name;
-
     protected int quantity;
-
     protected double priceTag;
+    protected static ArrayList<Exq> exqArrayList;
+    protected int itemsSold;
+
+    public static final ArrayList<Figure> FIGURE_LIST = new ArrayList<Figure>() {
+        {
+//            FIGURE_LIST.addAll(exqArrayList);
+//            FIGURE_LIST.addAll(Nendoroid.NENDOROID_LIST);
+            add(Exq.ASUNA_WEDDING);
+            add(Exq.REM_WEDDING);
+            add(Exq.KIRITO_DUAL_WIELD);
+            add(Exq.ALICE_SITTING);
+            add(Exq.LEAFA_FAIRY);
+            add(Nendoroid.ALBEDO);
+            add(Nendoroid.HATSUNE);
+            add(Nendoroid.NYARUKO_MAID_VER);
+        }
+    };
 
     public Figure(String name, int quantity, double priceTag) {
         this.name = name;
         this.quantity = quantity;
         this.priceTag = priceTag;
+        exqArrayList = Exq.EXQ_LIST;
+        ItemsSold itemsSold = new ItemsSold();
     }
 
     @Override
@@ -20,17 +41,34 @@ public abstract class Figure extends Item implements NamedItems, GeneralInformat
         return name;
     }
 
+    @Override
     public String setName(String newName) {
         return name = newName;
     }
 
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public double getPriceTag() {
+        return priceTag;
+    }
+
+    @Override
     public String getInformation() {
         return name + ", Quantity: " + quantity + ", $" + priceTag;
     }
 
+    @Override
     public boolean containsNameOrTitle(String givenNameOrTitle) {
         return getName().toLowerCase().contains(givenNameOrTitle.toLowerCase());
     }
+
+//    public void addFigureToAnimeOrGame(String animeOrGame, Exq exq) {
+//        stringSetHashMap.put(animeOrGame, new ArrayList<Figure>());
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,7 +85,6 @@ public abstract class Figure extends Item implements NamedItems, GeneralInformat
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, priceTag);
     }
 }

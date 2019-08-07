@@ -2,7 +2,7 @@ package inventoryTests;
 
 import model.inventory.FigureList;
 import model.inventory.InventoryList;
-import model.items.Item.Exq;
+import model.items.Exq;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -9,6 +9,9 @@ public class FigureList extends InventoryList {
 
     ArrayList<Figure> figureData = new ArrayList<>();
 
+    public FigureList(){
+    }
+
     // REQUIRES: a non-empty list with no duplicate figures
     // MODIFIES: this list by making a new list of strings (item names and quantities)
     // EFFECTS: returns a list of figure names and quantities of

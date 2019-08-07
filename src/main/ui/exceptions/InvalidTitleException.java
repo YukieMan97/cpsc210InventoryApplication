@@ -1,7 +1,8 @@
-package ui;
+package ui.exceptions;
 
 public class InvalidTitleException extends SearchExceptions {
-    InvalidTitleException() {
+
+    public InvalidTitleException() {
         super();
     }
 }

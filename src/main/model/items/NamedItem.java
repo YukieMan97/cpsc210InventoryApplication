@@ -1,6 +1,6 @@
 package model.items;
 
-interface NamedItems {
+interface NamedItem {
     String getName();
 
     String setName(String newName);

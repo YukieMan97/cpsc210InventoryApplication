@@ -2,10 +2,14 @@ package model.items;
 
 import model.orders.CustomerOrder;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Item {
+
+    private Set<CustomerOrder> customerOrders;
+
 //    protected HashMap<items, Set<items>> itemLookUp = new HashMap<>();
 //
 //    public void addExqFigure(Exq exq) {
@@ -22,7 +26,17 @@ public abstract class Item {
 //
 //    }
 
-    Set<CustomerOrder> customerOrders;
+    public static final ArrayList<Item> ITEM_LIST = new ArrayList<Item>() {
+        {
+//            ITEM_LIST.addAll(Figure.FIGURE_LIST);
+//            ITEM_LIST.addAll(Book.BOOK_LIST);
+        }
+    };
+
+    public abstract int purchaseItem();
+
+    public abstract int putItemOnHold();
+
 
     public void addCustomerOrder(CustomerOrder co) {
         customerOrders = new HashSet<>();

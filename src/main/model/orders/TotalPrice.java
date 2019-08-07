@@ -1,4 +1,4 @@
-package model.inventory;
+package model.orders;
 
 public class TotalPrice {
 

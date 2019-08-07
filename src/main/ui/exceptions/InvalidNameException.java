@@ -1,7 +1,8 @@
-package ui;
+package ui.exceptions;
 
 public class InvalidNameException extends SearchExceptions {
-    InvalidNameException() {
+
+    public InvalidNameException() {
         super();
     }
 }
