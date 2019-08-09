@@ -1,6 +1,5 @@
 package ui;
 
-import model.items.ArtBook;
 import model.items.Book;
 import model.items.Item;
 import ui.exceptions.*;
@@ -40,7 +39,7 @@ public class SearchBook {
                 return book;
             }
         }
-        return ArtBook.NIER;
+        return null;
     }
 
     // REQUIRES: BOOK_LIST cannot have more than 3 books of the same title
@@ -67,16 +66,7 @@ public class SearchBook {
             }
         }
         if (listOfBookData.size() == 1) {
-            String title = listOfBookData.get(0).getTitle();
-            String volumeOrChapter = listOfBookData.get(0).mangaChapterOrArtBookVolume();
-            System.out.println("Item found! " + title + " ." + volumeOrChapter);
-            try {
-                toDoWithItem(listOfBookData.get(0));
-            } catch (InvalidChangeException e) {
-                System.out.println("Hmm");
-                tryAgainBackToSearchAgain();
-                endSearch();
-            }
+            getOneBookData(bookTitle, listOfBookData);
         }
         throw new InvalidTitleException();
 //        try {
@@ -85,6 +75,20 @@ public class SearchBook {
 //        } catch (..) {
 //            // success
 //        }
+    }
+
+    public void getOneBookData(String bookTitle, List<Book> listOfBookData) throws InvalidTitleException,
+            InvalidInputException, InvalidNameException, InvalidChangeException {
+        String title = listOfBookData.get(0).getTitle();
+        String volumeOrChapter = listOfBookData.get(0).mangaChapterOrArtBookVolume();
+        System.out.println("Item found! " + title + " ." + volumeOrChapter);
+        try {
+            toDoWithItem(listOfBookData.get(0));
+        } catch (InvalidChangeException e) {
+            System.out.println("Hmm");
+            tryAgainBackToSearchAgain();
+            endSearch();
+        }
     }
 
     // REQUIRES: the size of the list inputted must be either 2 or 3
@@ -108,7 +112,6 @@ public class SearchBook {
     // MODIFIES: this
     // EFFECTS: gives the choice of choosing between the same titled books that have
     //          different chapters.
-    //TODO method too long
     public void chooseOneBookFromList(List<Book> listOfBooks) throws InvalidInputException,
             InvalidChangeException, InvalidNameException, InvalidTitleException, InvalidBookChoiceException {
 
@@ -118,22 +121,13 @@ public class SearchBook {
 
         switch (bookPosition) {
             case "1":
-                System.out.println("You have chosen the first item: "
-                        + listOfBooks.get(0).getTitle() + " "
-                        + listOfBooks.get(0).getVolumeOrChapter());
-                toDoWithItem(listOfBooks.get(0));
+                chooseFirstBook(listOfBooks);
                 return;
             case "2":
-                System.out.println("You have chosen the second item: "
-                        + listOfBooks.get(1).getTitle() + " "
-                        + listOfBooks.get(1).getVolumeOrChapter());
-                toDoWithItem(listOfBooks.get(1));
+                chooseSecondBook(listOfBooks);
                 return;
             case "3":
-                System.out.println("You have chosen the third item: "
-                        + listOfBooks.get(2).getTitle() + " "
-                        + listOfBooks.get(2).getVolumeOrChapter());
-                toDoWithItem(listOfBooks.get(2));
+                chooseThirdBook(listOfBooks);
                 return;
             case "0":
                 endSearch();
@@ -141,6 +135,30 @@ public class SearchBook {
             default:
                 throw new InvalidBookChoiceException();
         }
+    }
+
+    public void chooseThirdBook(List<Book> listOfBooks) throws InvalidChangeException,
+            InvalidInputException, InvalidNameException, InvalidTitleException {
+        System.out.println("You have chosen the third item: "
+                + listOfBooks.get(2).getTitle() + " "
+                + listOfBooks.get(2).getVolumeOrChapter());
+        toDoWithItem(listOfBooks.get(2));
+    }
+
+    public void chooseSecondBook(List<Book> listOfBooks) throws InvalidChangeException,
+            InvalidInputException, InvalidNameException, InvalidTitleException {
+        System.out.println("You have chosen the second item: "
+                + listOfBooks.get(1).getTitle() + " "
+                + listOfBooks.get(1).getVolumeOrChapter());
+        toDoWithItem(listOfBooks.get(1));
+    }
+
+    public void chooseFirstBook(List<Book> listOfBooks) throws InvalidChangeException,
+            InvalidInputException, InvalidNameException, InvalidTitleException {
+        System.out.println("You have chosen the first item: "
+                + listOfBooks.get(0).getTitle() + " "
+                + listOfBooks.get(0).getVolumeOrChapter());
+        toDoWithItem(listOfBooks.get(0));
     }
 
     // EFFECTS: prints a message about choosing from multiple books

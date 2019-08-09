@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nendoroid extends Figure {
-    String name;
-    String num;
-    int quantity;
+    protected String num;
+    protected int quantity;
+    protected double priceTag;
 
-    public static final Nendoroid ALBEDO = new Nendoroid("Albedo", "642", 6, 80.99);
-    public static final Nendoroid HATSUNE = new Nendoroid("Hastune Miku", "381-a", 1, 59.99);
-    public static final Nendoroid NYARUKO_MAID_VER = new Nendoroid("Nyaruko (Maid Ver.)", "331", 0, 55.99);
+    public static final Nendoroid ALBEDO = new Nendoroid("Albedo", "642",
+            6, 80.99);
+    public static final Nendoroid HATSUNE = new Nendoroid("Hastune Miku", "381-a",
+            1, 59.99);
+    public static final Nendoroid NYARUKO_MAID_VER = new Nendoroid("Nyaruko (Maid Ver.)",
+            "331", 0, 55.99);
 
     public static final List<Nendoroid> NENDOROID_LIST = new ArrayList<Nendoroid>() {
         {
@@ -21,8 +24,10 @@ public class Nendoroid extends Figure {
     };
 
     public Nendoroid(String name, String num, int quantity, double priceTag) {
-        super(name, quantity, priceTag);
+        super(name);
         this.num = num;
+        this.quantity = quantity;
+        this.priceTag = priceTag;
     }
 
 
@@ -45,6 +50,30 @@ public class Nendoroid extends Figure {
         return priceTag = newPriceTag;
     }
 
+    // MODIFIES: This
+    // EFFECTS: purchases an item by decreasing its quantity by one.
+    //          Also increases the amount of items sold by one.
+    //          If the quantity is zero, then the item will be unavailable
+    //          for purchase but available for putting on hold.
+    @Override
+    public String purchaseItem() {
+        if (quantity != 0) {
+            itemsSold++;
+            int newQuantity = quantity--;
+            return Integer.toString(newQuantity);
+        }
+        return "This item is currently unavailable. However, it can be put on hold.";
+    }
+
+    // MOFIDIES: this
+    // EFFECTS: puts an item on hold by decreasing the quantity by one.
+    //          When the quantity becomes a negative integer, that indicates
+    //          how much the store should order in.
+    public String putItemOnHold() {
+        int newQuantity = quantity--;
+        return Integer.toString(newQuantity);
+    }
+
     @Override
     public String getInformation() {
         return name + ", " + getNum() + ", Quantity: " + quantity + ", $" + priceTag;
@@ -53,15 +82,5 @@ public class Nendoroid extends Figure {
     @Override
     public boolean containsNameOrTitle(String givenNameOrTitle) {
         return getName().toLowerCase().contains(givenNameOrTitle.toLowerCase());
-    }
-
-    @Override
-    public int purchaseItem() {
-        return quantity--;
-    }
-
-    @Override
-    public int putItemOnHold() {
-        return 0;
     }
 }

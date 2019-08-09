@@ -3,8 +3,6 @@ package model.items;
 import java.util.ArrayList;
 
 public class Manga extends Book {
-    int quantity;
-    double priceTag;
 
     public static final Manga PROMISED_MN1 = new Manga("The Promised Neverland", 1,
             "Kaiu Shirai and Posuka Demizu", 2016, 1, 14.99);
@@ -35,11 +33,31 @@ public class Manga extends Book {
     }
 
     @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
     public String getVolumeOrChapter() {
         if (volumeOrChapter == 0) {
             return "(no chapter)";
         }
         return "ch. " + volumeOrChapter;
+    }
+
+    // MODIFIES: This
+    // EFFECTS: purchases an item by decreasing its quantity by one.
+    //          Also increases the amount of items sold by one.
+    //          If the quantity is zero, then will print out a statement saying
+    //          that the item will be unavailable for purchase but available
+    //          for putting on hold.
+    @Override
+    public String purchaseItem() {
+        if (quantity != 0) {
+            itemsSold++;
+            return Integer.toString(quantity--);
+        }
+        return "This item is currently unavailable. However, it can be put on hold.";
     }
 
     @Override
@@ -51,10 +69,9 @@ public class Manga extends Book {
     }
 
     @Override
-    public int putItemOnHold() {
-        return quantity--;
+    public double getPriceTag() {
+        return priceTag;
     }
-
 
     @Override
     public double setPriceTag(double newPriceTag) {

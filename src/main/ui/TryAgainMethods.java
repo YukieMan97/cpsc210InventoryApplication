@@ -68,7 +68,6 @@ public class TryAgainMethods {
             InvalidTitleException, InvalidInputException, InvalidChangeException {
         getPrintEmptyLine();
         System.out.println("This figure is not found!");
-        getPrintEmptyLine();
         System.out.println("Please try entering a figure name again, ");
         System.out.println("press 1 to go back to the main menu, or ");
         System.out.println("press 0 to exit the search function.");
@@ -98,7 +97,6 @@ public class TryAgainMethods {
             InvalidInputException, InvalidChangeException, InvalidNameException {
         getPrintEmptyLine();
         System.out.println("This book is not found!");
-        getPrintEmptyLine();
         System.out.println("Please try entering a book title again, ");
         System.out.println("press 1 to go back to the main menu, or ");
         System.out.println("press 0 to exit the search function.");
@@ -172,7 +170,8 @@ public class TryAgainMethods {
         ciq.changeQuantity(item, purchaseOrHold);
     }
 
-    public void answerToCustomerOrStaff(Item item, String purchaseOrHold, String chooseCustomerOrStaff) throws InvalidChangeException,
+    public void answerToCustomerOrStaff(Item item, String purchaseOrHold, String chooseCustomerOrStaff)
+            throws InvalidChangeException,
             InvalidNameException, InvalidTitleException, InvalidInputException {
         ChangeItemQuantity ciq = new ChangeItemQuantity(sim, tam, tdwi);
         ciq.answerToCustomerOrStaff(item, purchaseOrHold, chooseCustomerOrStaff);

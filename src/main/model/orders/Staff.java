@@ -36,12 +36,13 @@ public class Staff extends Person implements SalesObserver {
             System.out.println(getName() + " would like to order "
                     + ((Book) item).getTitle() + " "
                     + ((Book) item).getVolumeOrChapter() + "!");
-        } System.out.println(getName() + " does not want to order anything.");
+        }
+        System.out.println(getName() + " does not want to order anything.");
     }
 
 
     @Override
-    public void update (Sales sales) {
+    public void update(Sales sales) {
         System.out.println("We are currently at $" + Double.toString(sales.getSales()) + ","
                 + " and our goal is $" + Integer.toString(sales.salesGoal) + ".");
     }

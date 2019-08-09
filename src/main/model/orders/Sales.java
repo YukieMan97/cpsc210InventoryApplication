@@ -47,7 +47,8 @@ public class Sales {
     public double increaseSales(Item item) {
         if (item instanceof Figure) {
             return getSales() + ((Figure) item).getPriceTag();
-        } if (item instanceof Book) {
+        }
+        if (item instanceof Book) {
             return getSales() + ((Book) item).getPriceTag();
         }
         return getSales();

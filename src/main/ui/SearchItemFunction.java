@@ -12,13 +12,7 @@ public class SearchItemFunction {
     public static void main(String[] args) throws InvalidNameException, InvalidTitleException,
             InvalidInputException, InvalidChangeException {
         SearchItemMethods searchItemMethods = new SearchItemMethods();
-
         initiateSearch();
         searchItemMethods.startSearch();
-
-        //TODO make the changes save into the load/save file?
-
-        //call function before doing anything
-        // or give user to do it
     }
 }

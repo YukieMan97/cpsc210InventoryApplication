@@ -8,6 +8,8 @@ import ui.exceptions.InvalidTitleException;
 
 public class ToDoWithItem {
     private SearchItemMethods sim;
+    private ToDoWithItem tdwi;
+    private TryAgainMethods tam;
 
     public ToDoWithItem(SearchItemMethods sim) {
         this.sim = sim;
@@ -28,9 +30,7 @@ public class ToDoWithItem {
         switch (choiceOfChange) {
             // TODO cannot purchase/put item on hold if quantity is 0
             case "1":
-                changeQuantityReasons();
-                String reasonForQuantityChange = getUserResponse();
-                changeQuantity(item, reasonForQuantityChange);
+                changeQuantityChoice1(item);
                 return;
             // TODO change case #2-#4
             case "2":
@@ -44,17 +44,13 @@ public class ToDoWithItem {
                 return;
             default:
                 throw new InvalidChangeException();
-                //TODO need to catch
         }
     }
 
-    public void changeQuantityReasons() {
-        sim.changeQuantityReasons();
-    }
-
-    public void changeQuantity(Item item, String reasonForQuantityChange) throws InvalidInputException,
-            InvalidTitleException, InvalidNameException, InvalidChangeException {
-        sim.changeQuantity(item, reasonForQuantityChange);
+    public void changeQuantityChoice1(Item item) throws InvalidChangeException,
+            InvalidNameException, InvalidTitleException, InvalidInputException {
+        ChangeItemQuantity ciq = new ChangeItemQuantity(sim, tam, tdwi);
+        ciq.changeQuantityChoice1(item);
     }
 
     public void toDoWithItemMessage() {

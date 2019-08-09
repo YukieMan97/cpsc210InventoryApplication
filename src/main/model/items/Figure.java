@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Figure extends Item implements NamedItem, GeneralInformation {
-//    public HashMap<String, List<Figure>> stringSetHashMap = new HashMap<>();
     protected  String name;
     protected int quantity;
     protected double priceTag;
@@ -14,8 +13,6 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
 
     public static final ArrayList<Figure> FIGURE_LIST = new ArrayList<Figure>() {
         {
-//            FIGURE_LIST.addAll(exqArrayList);
-//            FIGURE_LIST.addAll(Nendoroid.NENDOROID_LIST);
             add(Exq.ASUNA_WEDDING);
             add(Exq.REM_WEDDING);
             add(Exq.KIRITO_DUAL_WIELD);
@@ -27,10 +24,8 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
         }
     };
 
-    public Figure(String name, int quantity, double priceTag) {
+    public Figure(String name) {
         this.name = name;
-        this.quantity = quantity;
-        this.priceTag = priceTag;
         exqArrayList = Exq.EXQ_LIST;
     }
 
@@ -45,18 +40,8 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
     }
 
     @Override
-    public int getQuantity() {
-        return quantity;
-    }
-
-    @Override
-    public double getPriceTag() {
-        return priceTag;
-    }
-
-    @Override
     public String getInformation() {
-        return name + ", Quantity: " + quantity + ", $" + priceTag;
+        return getName() + ", Quantity: " + getQuantity() + ", $" + getPriceTag();
     }
 
     @Override
@@ -64,16 +49,39 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
         return getName().toLowerCase().contains(givenNameOrTitle.toLowerCase());
     }
 
-    public int purchaseItem() {
-        itemsSold++;
-        this.sales = sales + getPriceTag();
-        //Sales.notifyObservers();
-        return quantity--;
+    // MODIFIES: This
+    // EFFECTS: purchases an item by decreasing its quantity by one.
+    //          Also increases the amount of items sold by one.
+    //          If the quantity is zero, then the item will be unavailable
+    //          for purchase but available for putting on hold.
+    @Override
+    public String purchaseItem() {
+        if (quantity != 0) {
+            itemsSold++;
+            int newQuantity = quantity--;
+            return Integer.toString(newQuantity);
+        }
+        return "This item is currently unavailable. However, it can be put on hold.";
+    }
+
+    // MOFIDIES: this
+    // EFFECTS: puts an item on hold by decreasing the quantity by one.
+    //          When the quantity becomes a negative integer, that indicates
+    //          how much the store should order in.
+    @Override
+    public String putItemOnHold() {
+        int newQuantity = quantity--;
+        return Integer.toString(newQuantity);
     }
 
     @Override
-    public int putItemOnHold() {
-        return quantity--;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public double getPriceTag() {
+        return priceTag;
     }
 
     @Override

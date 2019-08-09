@@ -31,7 +31,7 @@ public class SearchItemMethods {
     }
 
     // EFFECTS prints the main menu for searching
-    static void initiateSearch() {
+    public static void initiateSearch() {
         System.out.println("To search for a...");
         System.out.println("Figure - press 1");
         System.out.println("Book - press 2");
@@ -59,8 +59,8 @@ public class SearchItemMethods {
         startSearch();
     }
 
-    private void tryFirstChoice(String choice1) throws InvalidChangeException, InvalidTitleException,
-            InvalidInputException, InvalidNameException {
+    private void tryFirstChoice(String choice1) throws InvalidChangeException,
+            InvalidTitleException, InvalidInputException, InvalidNameException {
         try {
             chooseFigureOrBook(choice1);
         } catch (InvalidInputException e) {
@@ -72,7 +72,7 @@ public class SearchItemMethods {
     //          If input is "2", then books will be searched
     //          If input is "0", then the search function will end
     //          Throws InvalidInputException when an invalid choice is inputted
-    private void chooseFigureOrBook(String choice) throws InvalidInputException {
+    public void chooseFigureOrBook(String choice) throws InvalidInputException {
         switch (choice) {
             // choose figure
             case "1":

@@ -12,7 +12,8 @@ public class ItemsSold {
     }
 
     public String printSales() {
-        return "We have sold " + Integer.toString(itemsSold) + " items so far.";
+        return "We have sold " + Integer.toString(itemsSold)
+                + " items so far.";
     }
 
 }
