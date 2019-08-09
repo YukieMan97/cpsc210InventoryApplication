@@ -1,5 +1,6 @@
-package ui.gui;
+package ui;
 
+import model.items.Book;
 import model.items.Figure;
 
 import javax.swing.*;
@@ -8,12 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ChoseFigure extends JFrame {
+public class ChoseFigureOrBook extends JFrame {
     private ArrayList<Figure> figureArrayList;
+    private ArrayList<Book> bookArrayList;
     private JFrame chosenFigureFrame;
 
-    public ChoseFigure() {
+    ChoseFigureOrBook() {
         figureArrayList = Figure.FIGURE_LIST;
+        bookArrayList = Book.BOOK_LIST;
     }
 
 
@@ -23,6 +26,17 @@ public class ChoseFigure extends JFrame {
             if (f.containsNameOrTitle(text)) {
 //                chosenFigureFrame(f);
                 return f;
+            }
+        }
+        return null;
+    }
+
+    public Book checkBook(JTextField enterItemField) {
+        String text = enterItemField.getText();
+        for (Book b : bookArrayList) {
+            if (b.containsNameOrTitle(text)) {
+//                chosenFigureFrame(f);
+                return b;
             }
         }
         return null;

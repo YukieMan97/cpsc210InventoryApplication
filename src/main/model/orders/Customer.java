@@ -2,10 +2,13 @@ package model.orders;
 
 import model.items.Item;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Customer extends Person {
-    Set<Item> items;
+    protected Set<Item> items;
+
+    public static final Customer TREVOR = new Customer("Trevor", "778-234-6943", (new HashSet<Item>()));
 
     public Customer(String name, String phoneNumber, Set<Item> items) {
         super(name, phoneNumber);

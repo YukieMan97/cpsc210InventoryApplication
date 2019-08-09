@@ -15,13 +15,14 @@ import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OrderTests {
+class OrderTests {
     private Sales sales;
     private Exq e1;
     private Exq e2;
     private Nendoroid n1;
     private Nendoroid n2;
     private Customer c1;
+    private Customer c2;
 
     @BeforeEach
     void runBefore() {
@@ -30,7 +31,37 @@ public class OrderTests {
         e2 = Exq.KIRITO_DUAL_WIELD;
         n1 = Nendoroid.NYARUKO_MAID_VER;
         n2 = Nendoroid.ALBEDO;
-        c1 = new Customer("Trevor", "778-234-6943", (new HashSet<Item>()));
+        c1 = new Customer("Aaron", "778-374-3892", (new HashSet<Item>()));
+        c2 = Customer.TREVOR;
+    }
+
+    @Test
+    void testGetCustomerName() {
+        assertTrue(c2.getName().equals("Trevor"));
+        assertFalse(c2.getName().equals("trevor"));
+    }
+
+    @Test
+    void testGetCustomerPhoneNumber() {
+        assertTrue(c1.getPhoneNumber().equals("778-374-3892"));
+        assertFalse(c1.getPhoneNumber().equals("778-374-38922"));
+    }
+
+    @Test
+    void testGetStaffName() {
+        assertTrue(Staff.TANYA.getName().equals("Tanya"));
+        assertFalse(Staff.TANYA.getName().equals("tanya"));
+    }
+
+    @Test
+    void testGetItemWanted() {
+        Staff.TANYA.getItem();
+        Staff.CARRIE.getItem();
+    }
+
+    @Test
+    void testNoItemsWanted(){
+        Staff.JON.getItem();
     }
 
     @Test
@@ -72,17 +103,6 @@ public class OrderTests {
         exqOrderList.addPerson(Staff.TANYA);
         exqOrderList.display("  -");
         exqOrderList.display("  --");
-    }
-
-    @Test
-    void testGetItemWanted() {
-        Staff.TANYA.getItem();
-        Staff.CARRIE.getItem();
-    }
-
-    @Test
-    void testNoItemsWanted(){
-        Staff.JON.getItem();
     }
 
     @Test
