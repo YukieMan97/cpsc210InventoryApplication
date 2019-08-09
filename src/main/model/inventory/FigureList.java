@@ -10,7 +10,6 @@ public class FigureList extends InventoryList {
     public FigureList() {
     }
 
-    // REQUIRES: a non-empty list with no duplicate figures
     // MODIFIES: this list by making a new list of strings (item names and quantities)
     // EFFECTS: returns a list of figure names and quantities of
     //          every figure in the list
@@ -25,9 +24,8 @@ public class FigureList extends InventoryList {
         return namesAndQuantitiesList;
     }
 
-    // REQUIRES: a non-empty list with no duplicates
     // MODIFIES: this list by making a new list of strings (item names and quantities)
-    // EFFECTS: returns a list of in stock books, giving the name and quantity of
+    // EFFECTS: returns a list of in stock figures, giving the name and quantity of
     //          each stock where the quantities are greater than zero
     public ArrayList<String> inStockFigureList(ArrayList<Figure> figureArrayList) {
         ArrayList<String> stockList = new ArrayList<>();

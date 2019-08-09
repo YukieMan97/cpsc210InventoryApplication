@@ -32,11 +32,13 @@ public class Manga extends Book {
         super(title, volumeOrChapter, author, year, quantity, priceTag);
     }
 
+    // EFFECTS: returns the quantity of a manga
     @Override
     public int getQuantity() {
         return quantity;
     }
 
+    // EFFECTS returns the chapter of the manga
     @Override
     public String getVolumeOrChapter() {
         if (volumeOrChapter == 0) {

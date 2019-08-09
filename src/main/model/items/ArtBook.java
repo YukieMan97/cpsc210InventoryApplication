@@ -27,6 +27,7 @@ public class ArtBook extends Book {
         super(title, volumeOrChapter, author, year, quantity, priceTag);
     }
 
+    // EFFECTS returns the volume of the art book
     @Override
     public String getVolumeOrChapter() {
         if (volumeOrChapter == 0) {
@@ -35,33 +36,34 @@ public class ArtBook extends Book {
         return "vol. " + Integer.toString(volumeOrChapter);
     }
 
+    // EFFECTS: returns the quantity of an art book
     @Override
     public int getQuantity() {
         return quantity;
     }
 
-//    @Override
-//    public String putItemOnHold() {
-//        return quantity--;
-//    }
-
+    // EFFECTS: returns the current price of an art book
     @Override
     public double getPriceTag() {
         return priceTag;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets a new price and returns it
     @Override
     public double setPriceTag(double newPriceTag) {
         return priceTag = newPriceTag;
     }
 
-
+    // EFFECTS: returns all of the information about the book which includes its title,
+    //          volume or chapter, author, year published, quantity, and price
     @Override
     public String getInformation() {
         return (getTitle() + " " + getVolumeOrChapter() + ", " + getAuthor() + ", "
                 + getYearPublished() + ", Quantity: " + quantity + ", $" + priceTag);
     }
 
+    // EFFECTS: returns the volume of the artbook unless there isn't a volume
     @Override
     public String mangaChapterOrArtBookVolume() {
         if (getVolumeOrChapter().substring(0, 4).equals("vol.")) {
@@ -70,7 +72,7 @@ public class ArtBook extends Book {
         return "This art book does not have any volumes.";
     }
 
-    // MODIFIES: This
+    // MODIFIES: this
     // EFFECTS: purchases an item by decreasing its quantity by one.
     //          Also increases the amount of items sold by one.
     //          If the quantity is zero, then the item will be unavailable
@@ -85,7 +87,7 @@ public class ArtBook extends Book {
         return "This item is currently unavailable. However, it can be put on hold.";
     }
 
-    // MOFIDIES: this
+    // MODIFIES: this
     // EFFECTS: puts an item on hold by decreasing the quantity by one.
     //          When the quantity becomes a negative integer, that indicates
     //          how much the store should order in.

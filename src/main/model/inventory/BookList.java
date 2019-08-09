@@ -9,7 +9,6 @@ public class BookList extends InventoryList {
     public BookList() {
     }
 
-    // REQUIRES: a non-empty list with no duplicate figures
     // MODIFIES: this list by making a new list of strings (item names and quantities)
     // EFFECTS: returns a list of book titles and quantities of
     //          every book in the list
@@ -24,7 +23,6 @@ public class BookList extends InventoryList {
         return namesAndQuantitiesList;
     }
 
-    // REQUIRES: a non-empty list with no duplicates
     // MODIFIES: this list by making a new list of strings (item names and quantities)
     // EFFECTS: returns a list of in stock books, giving the name and quantity of
     //          each stock where the quantities are greater than zero

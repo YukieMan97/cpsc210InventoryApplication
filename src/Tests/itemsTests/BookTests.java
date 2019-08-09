@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import static model.items.ArtBook.DARK_SOULS;
 import static model.items.ArtBook.NIER;
 import static model.items.ArtBook.TOKYO_GHOUL;
-import static model.items.Manga.KAKEGURUI;
-import static model.items.Manga.NARUTO_SHIPPUDEN;
-import static model.items.Manga.PROMISED_MN2;
+import static model.items.Manga.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,6 +16,7 @@ public class BookTests {
     private Manga mn1;
     private Manga mn2;
     private Manga mn3;
+    private Manga mn4;
     private ArtBook ab;
     private ArtBook ab2;
     private ArtBook ab3;
@@ -27,6 +26,7 @@ public class BookTests {
         mn1 = NARUTO_SHIPPUDEN;
         mn2 = PROMISED_MN2;
         mn3 = KAKEGURUI;
+        mn4 = OVERLORD;
         ab = NIER;
         ab2 = DARK_SOULS;
         ab3 = TOKYO_GHOUL;
@@ -90,7 +90,7 @@ public class BookTests {
 
     @Test
     void testGetQuantityOfBook() {
-        assertTrue(mn2.getQuantity() == 1);
+        assertTrue(mn4.getQuantity() == 4);
         System.out.println(ab.getQuantity());
         assertFalse(ab.getQuantity() == 0);
     }
@@ -136,8 +136,8 @@ public class BookTests {
         assertTrue(mn1.getQuantity() == 2);
         mn1.purchaseItem();
         assertTrue(mn1.getQuantity() == 1);
-        mn3.purchaseItem();
-        assertTrue(mn3.getQuantity() == 0);
+        mn2.purchaseItem();
+        assertTrue(mn2.getQuantity() == 0);
     }
 
     @Test
