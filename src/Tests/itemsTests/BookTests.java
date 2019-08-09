@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static model.items.ArtBook.DARK_SOULS;
 import static model.items.ArtBook.NIER;
+import static model.items.ArtBook.TOKYO_GHOUL;
 import static model.items.Manga.KAKEGURUI;
 import static model.items.Manga.NARUTO_SHIPPUDEN;
 import static model.items.Manga.PROMISED_MN2;
@@ -19,6 +20,7 @@ public class BookTests {
     private Manga mn3;
     private ArtBook ab;
     private ArtBook ab2;
+    private ArtBook ab3;
 
     @BeforeEach
     void BeforeTest() {
@@ -27,17 +29,18 @@ public class BookTests {
         mn3 = KAKEGURUI;
         ab = NIER;
         ab2 = DARK_SOULS;
+        ab3 = TOKYO_GHOUL;
 
     }
 
     @Test
-    void TestGetTitleOfBook() {
+    void testGetTitleOfBook() {
         assertTrue(mn2.getTitle().equals("The Promised Neverland"));
         assertFalse(ab.getTitle().equals("Nieer: Automata World Guide"));
     }
 
     @Test
-    void TestSetTitleOfBook() {
+    void testSetTitleOfBook() {
         assertTrue(mn1.getTitle().equals("Naruto"));
         mn1.setTitle("Naruto Shippuden!");
         assertFalse(mn1.getTitle().equals("Naruto"));
@@ -45,26 +48,26 @@ public class BookTests {
     }
 
     @Test
-    void TestGetAuthorOfBook() {
+    void testGetAuthorOfBook() {
         assertTrue(mn2.getAuthor().equals("by Kaiu Shirai and Posuka Demizu"));
         assertFalse(ab.getAuthor().equals("by Jojo"));
     }
 
     @Test
-    void TestGetVolumeOfBook() {
+    void testGetVolumeOfBook() {
         assertTrue(ab2.getVolumeOrChapter().equals("(no volume)"));
         assertFalse(ab.getVolumeOrChapter().equals("vol. 2"));
         assertTrue(ab.getVolumeOrChapter().equals("vol. 1"));
     }
 
     @Test
-    void TestGetPriceTagOfBook() {
+    void testGetPriceTagOfBook() {
         assertTrue(ab.getPriceTag() == 49.99);
         assertFalse(ab.getPriceTag() == 34.99);
     }
 
     @Test
-    void TestSetPriceTag() {
+    void testSetPriceTag() {
         assertTrue(mn2.getPriceTag() == 14.99);
         mn2.setPriceTag(14.99);
         assertTrue(mn2.getPriceTag() == 14.99);
@@ -73,36 +76,35 @@ public class BookTests {
     }
 
     @Test
-    void TestGetChapterOfBook() {
+    void testGetChapterOfBook() {
         assertTrue(mn1.getVolumeOrChapter().equals("ch. 45"));
         assertTrue(mn2.getVolumeOrChapter().equals("ch. 2"));
         assertFalse(mn2.getVolumeOrChapter().equals("ch. 3"));
     }
 
     @Test
-    void TestYearPublished() {
+    void testYearPublished() {
         assertTrue(mn2.getYearPublished().equals("published in 2016"));
         assertFalse(ab.getYearPublished().equals("published in 1996)"));
     }
 
     @Test
-    void TestGetQuantityOfBook() {
+    void testGetQuantityOfBook() {
         assertTrue(mn2.getQuantity() == 1);
         System.out.println(ab.getQuantity());
         assertFalse(ab.getQuantity() == 0);
     }
 
     @Test
-    void TestGetInfoOfBook() {
-        System.out.println(ab.getInformation());
-        assertTrue(ab.getInformation().equals("NieR: Automata World Guide vol. 1, by Square Enix, published in 2019, Quantity: 4, $49.99"));
-        System.out.println(ab.getInformation());
-
-        assertFalse(ab.getInformation().equals("NieR: Automata World Guide"));
+    void testGetInfoOfBook() {
+        System.out.println(ab3.getInformation());
+        assertTrue(ab3.getInformation().equals("Tokyo Ghoul Illustrations: Zakki (no volume), by Sui Ishida, published in 2017, Quantity: 2, $24.99"));
+        System.out.println(ab3.getInformation());
+        assertFalse(ab.getInformation().equals("Tokyo Ghoul Illustrations: Zakki"));
     }
 
     @Test
-    void TestIfManga() {
+    void testIfManga() {
         System.out.println(mn2.mangaChapterOrArtBookVolume());
         System.out.println(mn2.getVolumeOrChapter().substring(0, 3));
         System.out.println(mn2.getVolumeOrChapter().substring(4));
@@ -114,7 +116,7 @@ public class BookTests {
     }
 
     @Test
-    void TestIfArtBook() {
+    void testIfArtBook() {
         System.out.println(ab.mangaChapterOrArtBookVolume());
         System.out.println(ab.getVolumeOrChapter().substring(0, 4));
         System.out.println(ab.getVolumeOrChapter().substring(5));
@@ -123,14 +125,14 @@ public class BookTests {
     }
 
     @Test
-    void TestDoesContainBookTitle() {
+    void testDoesContainBookTitle() {
         assertTrue(mn2.containsNameOrTitle("Promised"));
         assertTrue(mn2.containsNameOrTitle("promised"));
         assertFalse(mn2.containsNameOrTitle("Proomised"));
     }
 
     @Test
-    void TestPurchaseBook() {
+    void testPurchaseBook() {
         assertTrue(mn1.getQuantity() == 2);
         mn1.purchaseItem();
         assertTrue(mn1.getQuantity() == 1);
@@ -139,11 +141,7 @@ public class BookTests {
     }
 
     @Test
-    void TestPutBookOnHold() {
-        assertTrue(mn1.getQuantity() == 2);
-        mn1.putItemOnHold();
-        assertTrue(mn1.getQuantity() == 1);
-
+    void testPutBookOnHold() {
         assertTrue(ab.getQuantity() == 4);
         ab.putItemOnHold();
         assertTrue(ab.getQuantity() == 3);
@@ -153,7 +151,7 @@ public class BookTests {
     }
 
     @Test
-    void TestEquals() {
+    void testEquals() {
         assertFalse(mn1.equals(mn2));
     }
 }

@@ -8,6 +8,8 @@ public abstract class InventoryList {
 
     private ArrayList<Item> itemData = new ArrayList<>();
 
+    public InventoryList() {
+    }
 
     // MODIFIES: this
     // EFFECTS: adds e to the set unless e is already in the exq set
@@ -34,26 +36,4 @@ public abstract class InventoryList {
     public boolean contains(Item i) {
         return itemData.contains(i);
     }
-
-//    // MODIFIES: this
-//    // EFFECTS: compares two lists and returns a new list containing
-//    //          the same figure(s) from both lists unless they do not
-//    //          share the same figure(s) in which case it does nothing
-//    public InventoryList putSameFigureInList(InventoryList list) {
-//        InventoryList result = new InventoryList();
-//        if (list != null) {
-//            for (items i : this.itemData) {
-//                if (list.itemData.contains(i)) {
-//                    result.insert(i);
-//                }
-//            }
-//        }
-//        return result;
-//    }
-
-    public abstract ArrayList namesAndQuantities();
-
-    public abstract ArrayList inStockList();
-
-
 }

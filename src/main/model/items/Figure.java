@@ -44,9 +44,13 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
         return getName() + ", Quantity: " + getQuantity() + ", $" + getPriceTag();
     }
 
+    // REQUIRES: an actual word to properly find a figure with a matching title.
+    // MODIFIES: this
+    // EFFECTS: returns true when the givenName is contained in a figure name by making it
+    //          lower cased first. Otherwise, return false.
     @Override
-    public boolean containsNameOrTitle(String givenNameOrTitle) {
-        return getName().toLowerCase().contains(givenNameOrTitle.toLowerCase());
+    public boolean containsNameOrTitle(String givenName) {
+        return getName().toLowerCase().contains(givenName.toLowerCase());
     }
 
     // MODIFIES: This

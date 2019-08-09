@@ -147,7 +147,7 @@ public class ChangeItemQuantity {
             InvalidNameException, InvalidTitleException, InvalidInputException {
         String info = "customer purchase!";
         item.purchaseItem();
-        sales.increaseSales(item);
+//        sales.increaseSales(item);
         printPurchaseOrHoldMessage(item, info);
     }
 
@@ -155,7 +155,7 @@ public class ChangeItemQuantity {
             InvalidNameException, InvalidTitleException, InvalidInputException {
         String info = "staff purchase!";
         item.purchaseItem();
-        sales.increaseSales(item);
+//        sales.increaseSales(item);
         printPurchaseOrHoldMessage(item, info);
     }
 

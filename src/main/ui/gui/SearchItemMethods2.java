@@ -86,9 +86,13 @@ public class SearchItemMethods2 implements Runnable {
 //        choseFigure.checkFigure(enterItemField);
 
 
+        frameSetUp();
+    }
+
+    public void frameSetUp() {
         searchItemFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         searchItemFrame.setSize(220, 150);
-        searchItemFrame.setResizable(false);
+        searchItemFrame.setResizable(true);
         searchItemFrame.setVisible(true);
     }
 

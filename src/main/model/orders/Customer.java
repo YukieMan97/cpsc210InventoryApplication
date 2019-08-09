@@ -5,8 +5,6 @@ import model.items.Item;
 import java.util.Set;
 
 public class Customer extends Person {
-    String name;
-    String phoneNumber;
     Set<Item> items;
 
     public Customer(String name, String phoneNumber, Set<Item> items) {
@@ -17,9 +15,6 @@ public class Customer extends Person {
     public Set<Item> getOrderedItems() {
         return items;
     }
-
-//    public void addItemToOrder() {
-//    }
 
     public void addItems(Item i) {
         if (!items.contains(i)) {

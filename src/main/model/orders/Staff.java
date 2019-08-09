@@ -3,10 +3,8 @@ package model.orders;
 import model.items.*;
 
 public class Staff extends Person implements SalesObserver {
-    String name;
-    String position;
-    String phoneNumber;
-    Item item;
+    protected String position;
+    protected Item item;
 
     public static final Staff TANYA = new Staff("Tanya", "Supervisor",
             "778-906-8877", Exq.REM_WEDDING);
@@ -36,10 +34,10 @@ public class Staff extends Person implements SalesObserver {
             System.out.println(getName() + " would like to order "
                     + ((Book) item).getTitle() + " "
                     + ((Book) item).getVolumeOrChapter() + "!");
+        } else {
+            System.out.println(getName() + " does not want to order anything.");
         }
-        System.out.println(getName() + " does not want to order anything.");
     }
-
 
     @Override
     public void update(Sales sales) {

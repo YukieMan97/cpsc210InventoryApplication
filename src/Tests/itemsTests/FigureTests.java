@@ -67,14 +67,14 @@ public class FigureTests {
     }
 
     @Test
-    void TestDoesContainFigureName() {
+    void testDoesContainFigureName() {
         assertTrue(e2.containsNameOrTitle("kirito"));
         assertTrue(e2.containsNameOrTitle("Kirito"));
         assertFalse(e2.containsNameOrTitle("EXQ"));
     }
 
     @Test
-    void TestPurchaseBook() {
+    void testPurchaseBook() {
         assertTrue(e1.getQuantity() == 1);
         e1.purchaseItem();
         System.out.println(e1.getQuantity());
@@ -85,7 +85,7 @@ public class FigureTests {
     }
 
     @Test
-    void TestPutFigureOnHold() {
+    void testPutFigureOnHold() {
         System.out.println(e4.getQuantity());
         assertTrue(e4.getQuantity() == 0);
         e1.putItemOnHold();

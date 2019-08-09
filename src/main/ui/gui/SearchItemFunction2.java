@@ -14,8 +14,6 @@ class SearchItemFunction2 {
 
         SwingUtilities.invokeLater(new SearchItemMethods2());
 
-
-        System.out.println("I'm done.");
     }
 
 

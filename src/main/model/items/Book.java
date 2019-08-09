@@ -57,8 +57,12 @@ public abstract class Book extends Item implements GeneralInformation {
 
     public abstract String mangaChapterOrArtBookVolume();
 
-    public boolean containsNameOrTitle(String givenNameOrTitle) {
-        return getTitle().toLowerCase().contains(givenNameOrTitle.toLowerCase());
+    // REQUIRES: an actual word to properly find a book with a matching title.
+    // MODIFIES: this
+    // EFFECTS: returns true when the givenTitle is contained in a book title by making it
+    //          lower cased first. Otherwise, return false.
+    public boolean containsNameOrTitle(String givenTitle) {
+        return getTitle().toLowerCase().contains(givenTitle.toLowerCase());
     }
 
 //    @Override

@@ -15,24 +15,16 @@ public class OrderList {
         orderList.add(p);
     }
 
+    public int length() {
+        return orderList.size();
+    }
+
     public void display(String indentLevel) {
+        String indenteLevelSpace = "  ";
         System.out.println(indentLevel + name);
 
         for (Person person : orderList) {
-            person.display(indentLevel + indentLevel);
+            person.display(indenteLevelSpace + indentLevel);
         }
-    }
-
-    public static void main(String[] args) {
-        OrderList exqOrderList = new OrderList("Order list for EXQ figures");
-        OrderList mangaOrderList = new OrderList("Order list for Manga");
-        exqOrderList.addPerson(Staff.TANYA);
-        exqOrderList.addPerson(Staff.ELLY);
-        mangaOrderList.addPerson(Staff.CARRIE);
-
-        exqOrderList.display("  ");
-        mangaOrderList.display("  ");
-
-
     }
 }
