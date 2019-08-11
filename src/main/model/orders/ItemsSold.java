@@ -7,7 +7,7 @@ public class ItemsSold {
         this.itemsSold = 0;
     }
 
-    public int sellItem(){
+    public int sellItem() {
         return itemsSold++;
     }
 
