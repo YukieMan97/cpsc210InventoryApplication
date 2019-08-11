@@ -7,13 +7,17 @@ public class ItemsSold {
         this.itemsSold = 0;
     }
 
-    public int getSales() {
+    public int sellItem(){
+        return itemsSold++;
+    }
+
+    public int getItemsSold() {
         return itemsSold;
     }
 
-    public String printSales() {
+    public String getItemsSoldMessage() {
         return "We have sold " + Integer.toString(itemsSold)
-                + " items so far.";
+                + " item(s) so far.";
     }
 
 }

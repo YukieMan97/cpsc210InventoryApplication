@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FigureRecommenderTests {
+class FigureRecommenderTests {
     private Exq e1;
     private Exq e2;
     private Exq e3;

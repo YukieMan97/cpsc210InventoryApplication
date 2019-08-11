@@ -12,7 +12,7 @@ import static model.items.Manga.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BookTests {
+class BookTests {
     private Manga mn1;
     private Manga mn2;
     private Manga mn3;

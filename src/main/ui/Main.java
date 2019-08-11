@@ -14,9 +14,5 @@ public class Main {
         initiateSearch();
         searchItemMethods.startSearch();
 
-        GuiSearchMethods guiSearchMethods = new GuiSearchMethods();
-        guiSearchMethods.initiateSearch();
-//        SwingUtilities.invokeLater(new GuiSearchMethods());
-
     }
 }

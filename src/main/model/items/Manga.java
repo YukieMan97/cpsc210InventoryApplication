@@ -28,7 +28,7 @@ public class Manga extends Book {
         }
     };
 
-    public Manga(String title, int volumeOrChapter, String author, int year, int quantity, double priceTag) {
+    private Manga(String title, int volumeOrChapter, String author, int year, int quantity, double priceTag) {
         super(title, volumeOrChapter, author, year, quantity, priceTag);
     }
 
@@ -56,7 +56,7 @@ public class Manga extends Book {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             return Integer.toString(quantity--);
         }
         return "This item is currently unavailable. However, it can be put on hold.";

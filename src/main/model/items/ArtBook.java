@@ -22,8 +22,8 @@ public class ArtBook extends Book {
         }
     };
 
-    public ArtBook(String title, int volumeOrChapter, String author,
-                    int  year, int quantity, double priceTag) {
+    private ArtBook(String title, int volumeOrChapter, String author,
+                    int year, int quantity, double priceTag) {
         super(title, volumeOrChapter, author, year, quantity, priceTag);
     }
 
@@ -80,7 +80,7 @@ public class ArtBook extends Book {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             int newQuantity = quantity--;
             return Integer.toString(newQuantity);
         }

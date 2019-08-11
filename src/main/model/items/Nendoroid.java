@@ -1,12 +1,15 @@
 package model.items;
 
+import model.orders.ItemsSold;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Nendoroid extends Figure {
-    protected String num;
+    private String num;
     protected int quantity;
-    protected double priceTag;
+    private double priceTag;
+    protected ItemsSold itemsSold;
 
     public static final Nendoroid ALBEDO = new Nendoroid("Albedo", "642",
             6, 80.99);
@@ -28,10 +31,11 @@ public class Nendoroid extends Figure {
         this.num = num;
         this.quantity = quantity;
         this.priceTag = priceTag;
+        itemsSold = new ItemsSold();
     }
 
 
-    public String getNum() {
+    private String getNum() {
         return "#" + num;
     }
 
@@ -58,7 +62,7 @@ public class Nendoroid extends Figure {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             int newQuantity = quantity--;
             return Integer.toString(newQuantity);
         }

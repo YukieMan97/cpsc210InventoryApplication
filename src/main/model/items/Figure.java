@@ -1,14 +1,16 @@
 package model.items;
 
+import model.orders.ItemsSold;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Figure extends Item implements NamedItem, GeneralInformation {
     protected  String name;
     protected int quantity;
-    protected double priceTag;
-    protected static ArrayList<Exq> exqArrayList;
-    protected int itemsSold;
+    private double priceTag;
+    private static ArrayList<Exq> exqArrayList;
+    protected ItemsSold itemsSold;
     protected double sales;
 
     public static final ArrayList<Figure> FIGURE_LIST = new ArrayList<Figure>() {
@@ -61,7 +63,7 @@ public abstract class Figure extends Item implements NamedItem, GeneralInformati
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             int newQuantity = quantity--;
             return Integer.toString(newQuantity);
         }

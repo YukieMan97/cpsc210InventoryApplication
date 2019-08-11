@@ -3,10 +3,7 @@ package ordersTests;
 import model.items.Exq;
 import model.items.Item;
 import model.items.Nendoroid;
-import model.orders.Customer;
-import model.orders.OrderList;
-import model.orders.Sales;
-import model.orders.Staff;
+import model.orders.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OrderTests {
     private Sales sales;
+    private ItemsSold itemsSold;
     private Exq e1;
     private Exq e2;
     private Nendoroid n1;
@@ -27,6 +25,7 @@ class OrderTests {
     @BeforeEach
     void runBefore() {
         sales = new Sales();
+        itemsSold = new ItemsSold();
         e1 = Exq.LEAFA_FAIRY;
         e2 = Exq.KIRITO_DUAL_WIELD;
         n1 = Nendoroid.NYARUKO_MAID_VER;
@@ -60,7 +59,7 @@ class OrderTests {
     }
 
     @Test
-    void testNoItemsWanted(){
+    void testNoItemsWanted() {
         Staff.JON.getItem();
     }
 
@@ -164,5 +163,25 @@ class OrderTests {
         sales.addObserver(Staff.JON);
         sales.addObserver(Staff.CARRIE);
         sales.notifyObservers(sales);
+    }
+
+    @Test
+    void testGetNumberOfItemsSold() {
+        itemsSold.sellItem();
+        itemsSold.sellItem();
+        assertTrue(itemsSold.getItemsSold() == 2);
+    }
+
+    @Test
+    void testGetItemsSold() {
+        System.out.println(itemsSold.getItemsSoldMessage());
+        itemsSold.sellItem();
+        assertTrue((itemsSold.getItemsSoldMessage()).equals("We have sold 1 item(s) so far."));
+    }
+
+    @Test
+    void testSellItem() {
+        itemsSold.sellItem();
+        assertTrue(itemsSold.getItemsSold() == 1);
     }
 }

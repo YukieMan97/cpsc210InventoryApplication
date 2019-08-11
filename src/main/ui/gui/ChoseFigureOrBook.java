@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import model.items.Book;
 import model.items.Figure;

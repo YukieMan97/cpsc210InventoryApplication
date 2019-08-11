@@ -1,10 +1,13 @@
 package model.items;
 
+import model.orders.ItemsSold;
+
 import java.util.ArrayList;
 
 public class Exq extends Figure {
+    protected ItemsSold itemsSold;
     protected int quantity;
-    protected double priceTag;
+    private double priceTag;
 
     public static final Exq ASUNA_WEDDING = new Exq("Code Register Wedding Asuna", 2, 29.99);
     public static final Exq REM_WEDDING = new Exq("Starting Life in Another World Rem", 0, 39.99);
@@ -22,10 +25,11 @@ public class Exq extends Figure {
         }
     };
 
-    public Exq(String name, int quantity, double priceTag) {
+    private Exq(String name, int quantity, double priceTag) {
         super(name);
         this.quantity = quantity;
         this.priceTag = priceTag;
+        itemsSold = new ItemsSold();
     }
 
     @Override
@@ -46,7 +50,7 @@ public class Exq extends Figure {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             int newQuantity = quantity--;
             return Integer.toString(newQuantity);
         }

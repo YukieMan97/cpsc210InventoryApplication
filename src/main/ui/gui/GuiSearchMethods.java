@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import model.items.Book;
 import model.items.Figure;
@@ -16,14 +16,20 @@ public class GuiSearchMethods {
     private ChoseFigureOrBook choseFigureOrBook;
     private JTextField enterFigureField;
     private JTextField enterBookField;
+    private JButton seeFeaturedItem;
     private ArrayList<Figure> figureArrayList;
 
-    GuiSearchMethods() {
+    private GuiSearchMethods() {
         choseFigureOrBook = new ChoseFigureOrBook();
         figureArrayList = Figure.FIGURE_LIST;
     }
 
-    public void initiateSearch() {
+    public static void main(String[] args) {
+        GuiSearchMethods guiSearchMethods = new GuiSearchMethods();
+        guiSearchMethods.initiateSearch();
+    }
+
+    private void initiateSearch() {
         frameSetUp();
     }
 
@@ -45,12 +51,15 @@ public class GuiSearchMethods {
             setBackground(Color.pink);
 
             JLabel welcomeMessage = new JLabel("Welcome to Sakura Inventory Search!");
+            JLabel emptySpace = new JLabel("");
             welcomeMessage.setFont(new Font("Tahoma", Font.PLAIN,18));
             JLabel searchMessage = new JLabel("Search for an item with the given options!");
+            searchMessage.setFont(new Font("Tahoma", Font.PLAIN,15));
             JLabel enterFigureNameLabel = new JLabel("1. Please enter a figure name:");
             JLabel enterBookNameLabel = new JLabel("2. Please enter a book title:");
             enterFigureField = new JTextField(10);
             enterBookField = new JTextField(10);
+            seeFeaturedItem = new JButton("See Today's Featured Item!");
 
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
@@ -60,19 +69,36 @@ public class GuiSearchMethods {
             gbc.ipady = 20;
 
             add(welcomeMessage, gbc);
-            gbc.gridy += 2;
+            gbc.gridy++;
+            add(seeFeaturedItem, gbc);
+            gbc.gridy++;
+            add(emptySpace, gbc);
+            gbc.gridy++;
             add(searchMessage, gbc);
-            gbc.gridy += 2;
+            gbc.gridy++;
             add(enterFigureNameLabel, gbc);
             gbc.gridy++;
             add(enterFigureField, gbc);
-            gbc.gridy += 2;
+            gbc.gridy++;
             add(enterBookNameLabel, gbc);
             gbc.gridy++;
             add(enterBookField, gbc);
 
-
             searchItemFrame.getContentPane().setLayout(new BorderLayout());
+
+            seeFeaturedItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    UIManager.put("OptionPane.background", Color.pink);
+                    UIManager.put("Panel.background", Color.pink);
+                    String specialFeatureMessage = "<html>(ﾉ^ヮ^)ﾉ*:・ﾟ✧ Today's featured item is Albedo "
+                            + "#642 Nendoroid for only " + "<li><b>80.99</b>"
+                            + " !!! Wow! What a steal!!! ✧ﾟ・:ヾ(≧∇≦*)ゝ</ul></html>";
+                    JLabel label = new JLabel(specialFeatureMessage);
+                    label.setFont(new Font("Tahoma", Font.PLAIN, 10));
+                    JOptionPane.showMessageDialog(searchItemFrame, specialFeatureMessage);
+                }
+            });
 
             enterFigureField.addActionListener(new ActionListener() {
                 //        TheHandler handler = new TheHandler();
@@ -88,8 +114,10 @@ public class GuiSearchMethods {
                         // make another frame pop up
                         //choseFigureOrBook.chosenFigureFrame(f);
                     } else {
-                        JOptionPane.showMessageDialog(searchItemFrame,
-                                "This figure is not found! Press Ok to try again.");
+                        JLabel figureNotFound = new JLabel("This figure is not found! Press Ok to try again.");
+                        ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
+                        figureNotFound.setForeground(fireBrick);
+                        JOptionPane.showMessageDialog(searchItemFrame, figureNotFound);
                     }
                 }
             });
@@ -108,14 +136,15 @@ public class GuiSearchMethods {
                         // make another frame pop up
                         //choseFigureOrBook.chosenFigureFrame(b);
                     } else {
-                        JOptionPane.showMessageDialog(searchItemFrame,
-                                "This book is not found! Press Ok to try again.");
+                        JLabel bookNotFound = new JLabel("This book is not found! Press Ok to try again.");
+                        ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
+                        bookNotFound.setForeground(fireBrick);
+                        JOptionPane.showMessageDialog(searchItemFrame, bookNotFound);
                     }
                 }
             });
         }
     }
-
 
 //    private class TheHandler implements ActionListener {
 //

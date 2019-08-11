@@ -1,20 +1,18 @@
 package model.items;
 
 import model.orders.Customer;
-import model.orders.Sales;
+import model.orders.ItemsSold;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Item {
-    protected int itemsSold;
-    protected double sales;
-    protected Sales sales1;
+    protected ItemsSold itemsSold;
     private int quantity;
 
     public Item() {
-        sales1 = new Sales();
+        itemsSold = new ItemsSold();
     }
 
     public static final ArrayList<Item> ITEM_LIST = new ArrayList<Item>() {
@@ -31,7 +29,7 @@ public abstract class Item {
     //          for purchase but available for putting on hold.
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             int newQuantity = quantity--;
             return Integer.toString(newQuantity);
         }

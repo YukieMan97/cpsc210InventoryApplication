@@ -48,12 +48,12 @@ public class Sales {
 
 //    public double increaseSales(Item item) {
 //        if (item instanceof Figure) {
-//            return getSales() + ((Figure) item).getPriceTag();
+//            return getItemsSold() + ((Figure) item).getPriceTag();
 //        }
 //        if (item instanceof Book) {
-//            return getSales() + ((Book) item).getPriceTag();
+//            return getItemsSold() + ((Book) item).getPriceTag();
 //        }
-//        return getSales();
+//        return getItemsSold();
 //    }
 
     public void addObserver(SalesObserver salesObserver) {
@@ -80,8 +80,8 @@ public class Sales {
 //        promised3.purchaseItem();
 //        System.out.println(promised3.getPriceTag());
 ////        sales.increaseSales(promised3);
-//        System.out.println(sales.getSales());
-//        System.out.println(sales.printSales());
+//        System.out.println(sales.getItemsSold());
+//        System.out.println(sales.getItemsSoldMessage());
 //        System.out.println(sales.salesGoalMet());
 //
 //        sales.addObserver(Staff.ELLY);

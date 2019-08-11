@@ -1,15 +1,18 @@
 package model.items;
 
+import model.orders.ItemsSold;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Book extends Item implements GeneralInformation {
-    protected String title;
-    protected int volumeOrChapter;
-    protected String author;
-    protected int year;
+    private String title;
+    int volumeOrChapter;
+    private String author;
+    private int year;
     protected int quantity;
-    protected double priceTag;
+    double priceTag;
+    protected ItemsSold itemsSold;
 
     public static final ArrayList<Book> BOOK_LIST = new ArrayList<Book>() {
         {
@@ -85,7 +88,7 @@ public abstract class Book extends Item implements GeneralInformation {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold++;
+            itemsSold.sellItem();
             return Integer.toString(quantity--);
         }
         return "This item is currently unavailable. However, it can be put on hold.";

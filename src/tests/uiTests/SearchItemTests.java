@@ -12,7 +12,7 @@ import static model.items.ArtBook.NIER;
 import static model.items.Manga.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SearchItemTests {
+class SearchItemTests {
     private SearchItemMethods searchItemMethods;
     private SearchFigure searchFigure;
     private SearchBook searchBook;
@@ -49,7 +49,7 @@ public class SearchItemTests {
     }
 
     @Test
-    void TestChooseFigure() throws InvalidInputException {
+    void TestChooseFigure() {
         String choice = "1";
         try {
             searchItemMethods.chooseFigureOrBook(choice);
@@ -82,7 +82,7 @@ public class SearchItemTests {
 //    }
 
     @Test
-    void TestChooseFigureOrBookInvalidInputException() throws InvalidInputException {
+    void TestChooseFigureOrBookInvalidInputException() {
         String choice = "3";
         try {
             searchItemMethods.chooseFigureOrBook(choice);

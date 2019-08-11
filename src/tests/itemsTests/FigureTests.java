@@ -2,13 +2,15 @@ package itemsTests;
 
 import model.items.Exq;
 import model.items.Nendoroid;
+import model.orders.ItemsSold;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FigureTests {
+class FigureTests {
+    private ItemsSold itemsSold;
     private Exq e1;
     private Exq e2;
     private Exq e3;
@@ -19,6 +21,7 @@ public class FigureTests {
 
     @BeforeEach
     void runBefore() {
+        itemsSold = new ItemsSold();
         e1 = Exq.LEAFA_FAIRY;
         e2 = Exq.KIRITO_DUAL_WIELD;
         e3 = Exq.ASUNA_WEDDING;
@@ -78,6 +81,7 @@ public class FigureTests {
         assertTrue(e1.getQuantity() == 1);
         e1.purchaseItem();
         System.out.println(e1.getQuantity());
+        System.out.println(itemsSold.getItemsSoldMessage());
         assertTrue(e1.getQuantity() == 0);
         n2.purchaseItem();
         System.out.println(n2.getQuantity());
@@ -90,7 +94,6 @@ public class FigureTests {
         assertTrue(e4.getQuantity() == 0);
         e1.putItemOnHold();
         assertTrue(e4.getQuantity() == 0);
-
         System.out.println(n3.getQuantity());
         assertTrue(n3.getQuantity() == 1);
         n3.putItemOnHold();
