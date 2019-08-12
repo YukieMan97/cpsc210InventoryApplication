@@ -64,13 +64,6 @@ class OrderTests {
     }
 
     @Test
-    void testAddItemToCustomerOrder() {
-        e1.addCustomerOrder(c1);
-        System.out.println(c1.getOrderedItems());
-        assertTrue(c1.getOrderedItems().size() == 1);
-    }
-
-    @Test
     void testAddCustomerOrderToItem() {
         c1.addItems(e2);
         System.out.println(c1.getOrderedItems());
@@ -102,6 +95,9 @@ class OrderTests {
         exqOrderList.addPerson(Staff.TANYA);
         exqOrderList.display("  -");
         exqOrderList.display("  --");
+
+        c1.display("~ ~ ~");
+        Staff.CARRIE.display("~ ~ ~");
     }
 
     @Test
@@ -133,6 +129,15 @@ class OrderTests {
     void testPrintSales() {
         System.out.println(sales.printSales());
         assertTrue(sales.printSales().equals("We made $0.0 so far."));
+    }
+
+    @Test
+    void testSalesGoalMet() {
+        Sales sales2 = new Sales();
+        sales2.setSalesGoals("0");
+        System.out.println(sales2.salesGoalMet());
+        assertTrue(sales2.salesGoalMet().equals("Revenue goal met! We "
+                + "have surpassed $0, and we are now at $0.0!"));
     }
 
     @Test

@@ -3,7 +3,6 @@ package model.items;
 import model.orders.Customer;
 import model.orders.ItemsSold;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,13 +14,6 @@ public abstract class Item {
         itemsSold = new ItemsSold();
     }
 
-    public static final ArrayList<Item> ITEM_LIST = new ArrayList<Item>() {
-        {
-//            ITEM_LIST.addAll(Figure.FIGURE_LIST);
-//            ITEM_LIST.addAll(Book.BOOK_LIST);
-        }
-    };
-
     // MODIFIES: This
     // EFFECTS: purchases an item by decreasing its quantity by one.
     //          Also increases the amount of items sold by one.
@@ -30,10 +22,9 @@ public abstract class Item {
     public String purchaseItem() {
         if (quantity != 0) {
             itemsSold.sellItem();
-            int newQuantity = quantity--;
+            int newQuantity = (quantity -= 1);
             return Integer.toString(newQuantity);
         }
-        putItemOnHold();
         return "This item is currently unavailable. However, it can be put on hold.";
     }
 
@@ -42,7 +33,7 @@ public abstract class Item {
     //          When the quantity becomes a negative integer, that indicates
     //          how much the store should order in.
     public String putItemOnHold() {
-        int newQuantity = quantity--;
+        int newQuantity = quantity -= 1;
         return Integer.toString(newQuantity);
     }
 

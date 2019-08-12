@@ -20,10 +20,14 @@ public abstract class Book extends Item implements GeneralInformation {
             add(ArtBook.BATTLE_ANGEL);
             add(ArtBook.DARK_SOULS);
             add(ArtBook.TOKYO_GHOUL);
+            add(ArtBook.FINAL_FANTASY);
+            add(ArtBook.FINAL_FANTASY_2);
             add(Manga.PROMISED_MN1);
             add(Manga.PROMISED_MN2);
             add(Manga.PROMISED_MN3);
             add(Manga.KAKEGURUI);
+            add(Manga.KAKEGURUI_2);
+            add(Manga.KAKEGURUI_3);
             add(Manga.NARUTO_SHIPPUDEN);
             add(Manga.OVERLORD);
         }
@@ -37,6 +41,7 @@ public abstract class Book extends Item implements GeneralInformation {
         this.year = year;
         this.quantity = quantity;
         this.priceTag = priceTag;
+        itemsSold = new ItemsSold();
 
     }
 
@@ -68,11 +73,6 @@ public abstract class Book extends Item implements GeneralInformation {
         return getTitle().toLowerCase().contains(givenTitle.toLowerCase());
     }
 
-//    @Override
-//    public double getPriceTag() {
-//        return priceTag;
-//    }
-
     @Override
     public String getInformation() {
         return (getTitle() + " " + getVolumeOrChapter() + ", " + getAuthor() + ", "
@@ -89,11 +89,10 @@ public abstract class Book extends Item implements GeneralInformation {
     public String purchaseItem() {
         if (quantity != 0) {
             itemsSold.sellItem();
-            return Integer.toString(quantity--);
+            return Integer.toString(quantity -= 1);
         }
         return "This item is currently unavailable. However, it can be put on hold.";
     }
-
 
     // MOFIDIES: this
     // EFFECTS: puts an item on hold by decreasing the quantity by one.
@@ -101,7 +100,7 @@ public abstract class Book extends Item implements GeneralInformation {
     //          how much the store should order in.
     @Override
     public String putItemOnHold() {
-        int newQuantity = quantity--;
+        int newQuantity = (quantity -= 1);
         return Integer.toString(newQuantity);
     }
 
@@ -111,6 +110,10 @@ public abstract class Book extends Item implements GeneralInformation {
 
     public double getPriceTag() {
         return priceTag;
+    }
+
+    public double setPriceTag(double newPriceTag) {
+        return priceTag = newPriceTag;
     }
 
     @Override

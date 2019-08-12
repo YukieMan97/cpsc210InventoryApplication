@@ -25,7 +25,7 @@ public class Exq extends Figure {
         }
     };
 
-    private Exq(String name, int quantity, double priceTag) {
+    public Exq(String name, int quantity, double priceTag) {
         super(name);
         this.quantity = quantity;
         this.priceTag = priceTag;
@@ -42,6 +42,11 @@ public class Exq extends Figure {
         return priceTag;
     }
 
+    @Override
+    public double setPriceTag(double newPriceTag) {
+        return priceTag = newPriceTag;
+    }
+
     // MODIFIES: This
     // EFFECTS: purchases an item by decreasing its quantity by one.
     //          Also increases the amount of items sold by one.
@@ -51,9 +56,10 @@ public class Exq extends Figure {
     public String purchaseItem() {
         if (quantity != 0) {
             itemsSold.sellItem();
-            int newQuantity = quantity--;
+            int newQuantity = quantity -= 1;
             return Integer.toString(newQuantity);
         }
+        putItemOnHold();
         return "This item is currently unavailable. However, it can be put on hold.";
     }
 
@@ -63,7 +69,8 @@ public class Exq extends Figure {
     //          how much the store should order in.
     @Override
     public String putItemOnHold() {
-        int newQuantity = quantity--;
+        int newQuantity = quantity -= 1;
         return Integer.toString(newQuantity);
     }
+
 }

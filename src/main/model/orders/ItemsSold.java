@@ -4,13 +4,15 @@ public class ItemsSold {
     private int itemsSold;
 
     public ItemsSold() {
-        this.itemsSold = 0;
+        itemsSold = 0;
     }
 
+    // EFFECT: returns the amount of items sold plus one
     public int sellItem() {
-        return itemsSold++;
+        return itemsSold += 1;
     }
 
+    // EFFECTS: returns the amount of items sold
     public int getItemsSold() {
         return itemsSold;
     }
