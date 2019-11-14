@@ -163,8 +163,7 @@ public class GuiSearchMethods {
                         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                         options1, null);
 
-                // TODO can't buy if there is 0 left
-                // and when there is at most three of the same item
+                // TODO can't buy if there is 0 left AND when there is at most three of the same item
 
                 if (result == YES_OPTION) {
                     b.purchaseItem();
