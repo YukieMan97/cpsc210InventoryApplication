@@ -12,7 +12,7 @@ public abstract class Book extends Item implements GeneralInformation {
     private int year;
     protected int quantity;
     double priceTag;
-    protected ItemsSold itemsSold;
+    private ItemsSold itemsSold;
 
     public static final ArrayList<Book> BOOK_LIST = new ArrayList<Book>() {
         {
@@ -88,7 +88,6 @@ public abstract class Book extends Item implements GeneralInformation {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold.sellItem();
             return Integer.toString(quantity -= 1);
         }
         return "This item is currently unavailable. However, it can be put on hold.";

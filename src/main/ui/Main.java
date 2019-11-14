@@ -13,6 +13,5 @@ public class Main {
         SearchItemMethods searchItemMethods = new SearchItemMethods();
         initiateSearch();
         searchItemMethods.startSearch();
-
     }
 }

@@ -1,9 +1,13 @@
 package model.orders;
 
+import model.items.Book;
+import model.items.Manga;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sales {
+    private ItemsSold itemsSold;
     private double sales;
     public int salesGoal;
     private List<SalesObserver> observers = new ArrayList<>();
@@ -11,6 +15,7 @@ public class Sales {
     public Sales() {
         this.sales = 0.0;
         this.salesGoal = 200;
+        itemsSold = new ItemsSold();
     }
 
     // EFFECTS: returns the current sales amount
@@ -22,6 +27,12 @@ public class Sales {
     // EFFECTS: returns the rounded sales amount
     public int getRoundedSales() {
         return (int) Math.round(sales);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds the price of the figure sold to the sales amount
+    private double addToSales(double itemPrice) {
+        return sales += itemPrice;
     }
 
     // REQUIRES: a string that will be able to be converted into an integer
@@ -73,21 +84,24 @@ public class Sales {
         }
     }
 
-//    public static void main(String[] args) {
-//        Sales sales = new Sales();
-//        System.out.println(sales.setSalesGoals("250"));
-//        Book promised3 = Manga.PROMISED_MN3;
-//        promised3.purchaseItem();
-//        System.out.println(promised3.getPriceTag());
-////        sales.increaseSales(promised3);
-//        System.out.println(sales.getItemsSold());
+    public static void main(String[] args) {
+        Sales sales = new Sales();
+        ItemsSold is = new ItemsSold();
+        System.out.println(sales.setSalesGoals("250"));
+        Book promised3 = Manga.PROMISED_MN3;
+        promised3.purchaseItem();
+        System.out.println("Quantity: " + promised3.getQuantity());
+        System.out.println("Price: $" + promised3.getPriceTag());
+        System.out.println("add to sales -> " + sales.addToSales(promised3.getPriceTag()));
+        is.sellItem();
+        System.out.println(is.getItemsSold());
 //        System.out.println(sales.getItemsSoldMessage());
-//        System.out.println(sales.salesGoalMet());
-//
-//        sales.addObserver(Staff.ELLY);
-//        sales.addObserver(Staff.JON);
-//        sales.addObserver(Staff.CARRIE);
-//
-//        sales.notifyObservers(sales);
-//    }
+        System.out.println(sales.salesGoalMet());
+
+        sales.addObserver(Staff.ELLY);
+        sales.addObserver(Staff.JON);
+        sales.addObserver(Staff.CARRIE);
+
+        sales.notifyObservers(sales);
+    }
 }

@@ -71,11 +71,9 @@ public class Nendoroid extends Figure {
 //    @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold.sellItem();
             int newQuantity = quantity -= 1;
             return Integer.toString(newQuantity);
         }
-        putItemOnHold();
         return "This item is currently unavailable. However, it can be put on hold.";
     }
 

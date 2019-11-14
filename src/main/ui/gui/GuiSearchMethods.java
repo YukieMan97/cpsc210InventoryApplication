@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static javax.swing.JOptionPane.*;
+
 public class GuiSearchMethods {
 
     private JFrame searchItemFrame;
@@ -100,72 +102,92 @@ public class GuiSearchMethods {
                 }
             });
 
-            enterFigureField.addActionListener(new ActionListener() {
-                //        TheHandler handler = new TheHandler();
-                //        enterFigureField.addActionListener(handler);
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Figure f = choseFigureOrBook.checkFigure(enterFigureField);
-                    ColorUIResource lightSkyBlue = new ColorUIResource(135,206,250);
-                    UIManager.put("OptionPane.background", lightSkyBlue);
-                    UIManager.put("Panel.background", lightSkyBlue);
-                    if (f != null) {
-                        JOptionPane.showMessageDialog(searchItemFrame, "This figure is found! " + f.getInformation());
-                        // make another frame pop up
-                        //choseFigureOrBook.chosenFigureFrame(f);
-                    } else {
-                        JLabel figureNotFound = new JLabel("This figure is not found! Press Ok to try again.");
-                        ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
-                        figureNotFound.setForeground(fireBrick);
-                        JOptionPane.showMessageDialog(searchItemFrame, figureNotFound);
-                    }
-                }
-            });
+            TheFigureHandler tfh = new TheFigureHandler();
+            enterFigureField.addActionListener(tfh);
 
-            enterBookField.addActionListener(new ActionListener() {
-                //        TheHandler handler = new TheHandler();
-                //        enterFigureField.addActionListener(handler);
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Book b = choseFigureOrBook.checkBook(enterBookField);
-                    ColorUIResource thistle = new ColorUIResource(216,191,216);
-                    UIManager.put("OptionPane.background", thistle);
-                    UIManager.put("Panel.background", thistle);
-                    if (b != null) {
-                        JOptionPane.showMessageDialog(searchItemFrame, "This book is found! " + b.getInformation());
-                        // make another frame pop up
-                        //choseFigureOrBook.chosenFigureFrame(b);
-                    } else {
-                        JLabel bookNotFound = new JLabel("This book is not found! Press Ok to try again.");
-                        ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
-                        bookNotFound.setForeground(fireBrick);
-                        JOptionPane.showMessageDialog(searchItemFrame, bookNotFound);
-                    }
-                }
-            });
+            TheBookHandler theBookHandler = new TheBookHandler();
+            enterBookField.addActionListener(theBookHandler);
         }
     }
 
-//    private class TheHandler implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent evt) {
-//            String cmd = evt.getActionCommand();
-//
-//            if (evt.getSource() == enterFigureField) {
-//                String text = enterFigureField.getText();
-//                for (Figure f : figureArrayList) {
-//                    if (f.containsNameOrTitle(text)) {
-//                        String.format("Item Status: %s", evt.getActionCommand());
-//                        return;
-//                    } else {
-//                        String.format("This figure is not found! Press Ok to try again.", evt.getActionCommand());
-//                        return;
-//                    }
-//                }
-//                JOptionPane.showMessageDialog(searchItemFrame, "Item Status: " + cmd);
-//            }
-//        }
-//    }
+    private class TheFigureHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Figure f = choseFigureOrBook.checkFigure(enterFigureField);
+            ColorUIResource lightSkyBlue = new ColorUIResource(135,206,250);
+            UIManager.put("OptionPane.background", lightSkyBlue);
+            UIManager.put("Panel.background", lightSkyBlue);
+            if (f != null) {
+                String figureFound = "This figure is found! " + f.getInformation() + ". ";
+                Object[] options1 = {"Purchase This Item", "Change Quantity", "Quit"};
+                JOptionPane.showConfirmDialog(searchItemFrame, figureFound);
+                int result = JOptionPane.showOptionDialog(searchItemFrame, figureFound, "Title",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options1, null);
+
+                // TODO can't buy if there is 0 left
+
+                if (result == YES_OPTION) {
+                    f.purchaseItem();
+                    String purchaseFigure = "Thanks for your purchase! There is only " + f.getQuantity()
+                            + " of " + f.getName() + " left!";
+                    JOptionPane.showMessageDialog(searchItemFrame, purchaseFigure);
+                }
+
+                if (result == NO_OPTION) {
+                    String changeQuantity = "Reason for changing quantity?";
+                    JOptionPane.showInputDialog(searchItemFrame, changeQuantity);
+                }
+            } else {
+                JLabel figureNotFound = new JLabel("This figure is not found! Press Ok to try again.");
+                ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
+                figureNotFound.setForeground(fireBrick);
+                JOptionPane.showMessageDialog(searchItemFrame, figureNotFound);
+            }
+        }
+    }
+
+    private class TheBookHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Book b = choseFigureOrBook.checkBook(enterBookField);
+            ColorUIResource thistle = new ColorUIResource(216,191,216);
+            UIManager.put("OptionPane.background", thistle);
+            UIManager.put("Panel.background", thistle);
+            if (b != null) {
+                String bookFound = "This book is found! " + b.getInformation() + ".";
+                Object[] options1 = {"Purchase This Item", "Change Quantity", "Quit"};
+                int result = JOptionPane.showOptionDialog(searchItemFrame, bookFound, "Title",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options1, null);
+
+                // TODO can't buy if there is 0 left
+                // and when there is at most three of the same item
+
+                if (result == YES_OPTION) {
+                    b.purchaseItem();
+                    String purchaseBook = "Thanks for your purchase! There is only " + b.getQuantity()
+                            + " of " + b.getTitle() + " left!";
+                    JOptionPane.showMessageDialog(searchItemFrame, purchaseBook);
+                }
+
+                if (result == NO_OPTION) {
+                    String changeQuantity = "Reason for changing quantity?";
+                    JOptionPane.showInputDialog(searchItemFrame, changeQuantity);
+                }
+
+                if (result == CANCEL_OPTION) {
+                    System.exit(0);
+                }
+            } else {
+                JLabel bookNotFound = new JLabel("This book is not found! Press Ok to try again.");
+                ColorUIResource fireBrick = new ColorUIResource(178, 34, 34);
+                bookNotFound.setForeground(fireBrick);
+                JOptionPane.showMessageDialog(searchItemFrame, bookNotFound);
+            }
+        }
+    }
 }
 

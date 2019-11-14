@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Item {
-    protected ItemsSold itemsSold;
+    private ItemsSold itemsSold;
     private int quantity;
 
     public Item() {
@@ -21,7 +21,6 @@ public abstract class Item {
     //          for purchase but available for putting on hold.
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold.sellItem();
             int newQuantity = (quantity -= 1);
             return Integer.toString(newQuantity);
         }

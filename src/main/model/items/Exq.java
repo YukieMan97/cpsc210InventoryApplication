@@ -5,7 +5,7 @@ import model.orders.ItemsSold;
 import java.util.ArrayList;
 
 public class Exq extends Figure {
-    protected ItemsSold itemsSold;
+    private ItemsSold itemsSold;
     protected int quantity;
     private double priceTag;
 
@@ -55,11 +55,9 @@ public class Exq extends Figure {
     @Override
     public String purchaseItem() {
         if (quantity != 0) {
-            itemsSold.sellItem();
             int newQuantity = quantity -= 1;
             return Integer.toString(newQuantity);
         }
-        putItemOnHold();
         return "This item is currently unavailable. However, it can be put on hold.";
     }
 

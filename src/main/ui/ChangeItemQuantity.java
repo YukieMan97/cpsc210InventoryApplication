@@ -3,6 +3,7 @@ package ui;
 import model.items.Book;
 import model.items.Figure;
 import model.items.Item;
+import model.orders.ItemsSold;
 import model.orders.Sales;
 import ui.exceptions.InvalidChangeException;
 import ui.exceptions.InvalidInputException;
@@ -16,6 +17,7 @@ public class ChangeItemQuantity {
     private SearchFigure sf;
     private ToDoWithItem tdwi;
     private Sales sales;
+    private ItemsSold itemsSold;
 
     // Constructor
     public ChangeItemQuantity(SearchItemMethods sim, TryAgainMethods tam, ToDoWithItem tdwi) {
@@ -23,9 +25,10 @@ public class ChangeItemQuantity {
         this.tam = tam;
         this.tdwi = tdwi;
         sales = new Sales();
+        itemsSold = new ItemsSold();
     }
 
-    public String getUserResponse() {
+    private String getUserResponse() {
         return sim.getUserResponse();
     }
 
@@ -68,7 +71,7 @@ public class ChangeItemQuantity {
         }
     }
 
-    public void purchase(Item item, String purchaseOrHold) throws InvalidTitleException,
+    private void purchase(Item item, String purchaseOrHold) throws InvalidTitleException,
             InvalidNameException, InvalidChangeException, InvalidInputException {
         System.out.println("Purchase!");
         try {
@@ -79,7 +82,7 @@ public class ChangeItemQuantity {
         }
     }
 
-    public void hold(Item item, String purchaseOrHold) throws InvalidTitleException,
+    private void hold(Item item, String purchaseOrHold) throws InvalidTitleException,
             InvalidNameException, InvalidChangeException, InvalidInputException {
         System.out.println("Hold!");
         try {
@@ -93,7 +96,7 @@ public class ChangeItemQuantity {
     // EFFECTS: Allows the user to choose if the purchase or hold of an item
     //          is for a customer or staff.
     //          Throws InvalidInputException when the user enters an invalid input
-    public void customerOrStaff(Item item, String purchaseOrHold) throws InvalidInputException,
+    private void customerOrStaff(Item item, String purchaseOrHold) throws InvalidInputException,
             InvalidTitleException, InvalidNameException, InvalidChangeException {
         System.out.println("For Customer (1) or Staff (2)?");
 
@@ -114,7 +117,7 @@ public class ChangeItemQuantity {
     }
 
     // EFFECTS: prints out whether the purchase of an item is for a customer or staff
-    public void purchaseOrHold(Item item, String purchaseOrHold, String chooseCustomerOrStaff)
+    private void purchaseOrHold(Item item, String purchaseOrHold, String chooseCustomerOrStaff)
             throws InvalidInputException, InvalidTitleException, InvalidNameException, InvalidChangeException {
 
         if (purchaseOrHold.equals("1") && (chooseCustomerOrStaff.equals("1"))) {
@@ -136,64 +139,89 @@ public class ChangeItemQuantity {
         throw new InvalidInputException();
     }
 
-    public void staffHold(Item item) throws InvalidChangeException,
-            InvalidNameException, InvalidTitleException, InvalidInputException {
-        String info = "staff hold!";
-        item.putItemOnHold();
-        printPurchaseOrHoldMessage(item, info);
-    }
-
-    public void customerPurchase(Item item) throws InvalidChangeException,
+    private void customerPurchase(Item item) throws InvalidChangeException,
             InvalidNameException, InvalidTitleException, InvalidInputException {
         String info = "customer purchase!";
-        item.purchaseItem();
+        purchaseItemWithMessage(item, info);
 //        sales.increaseSales(item);
-        printPurchaseOrHoldMessage(item, info);
     }
 
-    public void staffPurchase(Item item) throws InvalidChangeException,
+    private void staffPurchase(Item item) throws InvalidChangeException,
             InvalidNameException, InvalidTitleException, InvalidInputException {
         String info = "staff purchase!";
-        item.purchaseItem();
-//        sales.increaseSales(item);
-        printPurchaseOrHoldMessage(item, info);
+        purchaseItemWithMessage(item, info);
     }
 
-    public void customerHold(Item item)
+    private void customerHold(Item item)
             throws InvalidChangeException, InvalidNameException, InvalidTitleException, InvalidInputException {
         String info = "customer hold!";
         item.putItemOnHold();
         printPurchaseOrHoldMessage(item, info);
     }
 
-    public void printPurchaseOrHoldMessage(Item item, String info) throws InvalidChangeException,
+    private void staffHold(Item item) throws InvalidChangeException,
             InvalidNameException, InvalidTitleException, InvalidInputException {
+        String info = "staff hold!";
+        item.putItemOnHold();
+        printPurchaseOrHoldMessage(item, info);
+    }
+
+    private void purchaseItemWithMessage(Item item, String info) throws InvalidChangeException, InvalidNameException, InvalidTitleException, InvalidInputException {
+        soldItem(item);
+        printPurchaseOrHoldMessage(item, info);
+    }
+
+    private void soldItem(Item item) {
         if (item instanceof Figure) {
+            if (((Figure) item).getQuantity() != 0) {
+                item.purchaseItem();
+                itemsSold.sellItem(); //TODO keeps saying only one item is sold
+            }
+            System.out.println(item.purchaseItem());
+        }
+        if (item instanceof Book) {
+            if (((Book) item).getQuantity() != 0) {
+                item.purchaseItem();
+                itemsSold.sellItem(); //TODO keeps saying only one item is sold
+            }
+            System.out.println(item.purchaseItem());
+        }
+    }
+
+    // TODO if quantity = 0, need to ask if want to put on hold
+    
+    private void printPurchaseOrHoldMessage(Item item, String info) throws InvalidChangeException,
+            InvalidNameException, InvalidTitleException, InvalidInputException {
+        if (item instanceof Figure && (((Figure) item).getQuantity() != 0)) {
             System.out.println("Okay, " + ((Figure) item).getName() + " will be for " + info);
             System.out.println("Only " + ((Figure) item).getQuantity()
                     + " of " + ((Figure) item).getName() + " left in stock.");
+            System.out.println(itemsSold.getItemsSoldMessage());
+            backToSearchAgain();
+        } else {
+            System.out.println(itemsSold.getItemsSoldMessage());
             backToSearchAgain();
         }
-        if (item instanceof Book) {
+        if (item instanceof Book && (((Book) item).getQuantity() != 0)) {
             String titleAndVolumeOrChapter = ((Book) item).getTitle() + " " + ((Book) item).getVolumeOrChapter();
             System.out.println("Okay, " + titleAndVolumeOrChapter + " will be for " + info);
             System.out.println("Only " + ((Book) item).getQuantity()
                     + " of " + titleAndVolumeOrChapter + " left in stock.");
+            System.out.println(itemsSold.getItemsSoldMessage());
+            backToSearchAgain();
+        } else {
+            System.out.println(itemsSold.getItemsSoldMessage());
             backToSearchAgain();
         }
     }
 
-    public void endSearch() {
-        sim.endSearch();
-    }
-
-    public void tryAgainBackToCustomerOrStaffChoice(Item item, String purchaseOrHold)
+    private void tryAgainBackToCustomerOrStaffChoice(Item item, String purchaseOrHold)
             throws InvalidChangeException, InvalidNameException, InvalidTitleException, InvalidInputException {
         TryAgainMethods tam = new TryAgainMethods(sim, sf, sb);
         tam.tryAgainBackToCustomerOrStaffChoice(item, purchaseOrHold);
     }
 
-    public void backToSearchAgain() throws InvalidChangeException,
+    private void backToSearchAgain() throws InvalidChangeException,
             InvalidNameException, InvalidTitleException, InvalidInputException {
         TryAgainMethods tam = new TryAgainMethods(sim, sf, sb);
         tam.backToSearchAgain();
