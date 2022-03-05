@@ -1,6 +1,6 @@
 # inventoryApplication
 S2019 - CPSC 210
-A simple application that keeps track of information of items, such as its name, price, quantitiy, etc. within the store. 
+A simple application that keeps track of information of items, such as its name, price, quantity, etc. within the store. 
 
 I have classes of specific items and other categories a store would include. For example, I have a class of manga 
 and art books which both extend Book which extends Item. Although there are multiple classes, cohesion and coupling 
